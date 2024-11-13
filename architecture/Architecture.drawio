@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-11-13T09:52:19.055Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="oVKmhPsbxvJj9RN3JS5V" version="22.0.2" type="device">
+<mxfile host="Electron" modified="2024-11-13T10:04:26.883Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="uOAtroGT0Jfqhn2fmzX4" version="22.0.2" type="device">
   <diagram name="Pagina-1" id="Af2GxlgzsYfftgxqkVeS">
     <mxGraphModel dx="1922" dy="1272" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -16,33 +16,11 @@
         <mxCell id="Ahilg75CwXbo_zg4Yy4V-21" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="260" y="150" width="300" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="Ahilg75CwXbo_zg4Yy4V-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="10" y="310" as="sourcePoint" />
-            <mxPoint x="10" y="140" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Ahilg75CwXbo_zg4Yy4V-4" value="Login" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Ahilg75CwXbo_zg4Yy4V-3" vertex="1" connectable="0">
-          <mxGeometry x="0.0286" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="Ahilg75CwXbo_zg4Yy4V-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" parent="1" source="Ahilg75CwXbo_zg4Yy4V-1" target="Ahilg75CwXbo_zg4Yy4V-40" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Ahilg75CwXbo_zg4Yy4V-1" value="Web Application&lt;br&gt;(Angular)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-90" y="310" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="Ahilg75CwXbo_zg4Yy4V-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Ahilg75CwXbo_zg4Yy4V-2" target="Ahilg75CwXbo_zg4Yy4V-1" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="Ahilg75CwXbo_zg4Yy4V-6" value="Provides Headers" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="Ahilg75CwXbo_zg4Yy4V-5" vertex="1" connectable="0">
-          <mxGeometry x="0.1143" y="-3" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Ahilg75CwXbo_zg4Yy4V-2" value="AuthService&lt;br&gt;(External)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-90" y="80" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Ahilg75CwXbo_zg4Yy4V-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="Ahilg75CwXbo_zg4Yy4V-7" target="Ahilg75CwXbo_zg4Yy4V-12" edge="1">
           <mxGeometry relative="1" as="geometry" />
