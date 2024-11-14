@@ -1,8 +1,8 @@
 # Architecture
 
-:heavy_check_mark:_(COMMENT) Add a description of the architecture of your application and create a diagram like the one below. Link to the diagram in this document._
+:heavy_check_mark:
 
-![Architecture drawio](https://github.com/pxlit-projects/project-ThimoGubbelsPXL/blob/main/architecture/Architecture.drawio.png)
+![Architecture drawio](https://github.com/pxlit-projects/project-ThimoGubbelsPXL/blob/main/architecture/Architecture.png)
 
 The Post,Comment and Review services will communicate using Open-Feign SYNC communication to retreive the linked Reviews and Comments of a post when a get request for a post is done.
 So when a get post request is done, the id of the linked review or comment is used to send a related get request, to get the relevant object and after getting a response, the post with related reviews and or comments is sent back to the API gateway.
