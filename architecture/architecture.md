@@ -1,6 +1,6 @@
 # Architecture
 
-:heavy_check_mark:_
+:heavy_check_mark:
 
 ![Architecture drawio](https://github.com/pxlit-projects/project-ThimoGubbelsPXL/blob/main/architecture/Architecture.drawio.png)
 
