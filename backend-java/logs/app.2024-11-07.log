@@ -1,0 +1,131 @@
+2024-11-07T11:33:55.692+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 3264 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+2024-11-07T11:33:55.694+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+2024-11-07T11:33:55.694+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-07T11:34:00.598+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 5.803 seconds (process running for 6.807)
+2024-11-07T11:35:07.922+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:07.922+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:24.371+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 39632 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+2024-11-07T11:35:24.373+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+2024-11-07T11:35:24.373+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-07T11:35:29.056+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 5.589 seconds (process running for 6.714)
+2024-11-07T11:35:37.042+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:37.042+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:38.910+0100 INFO               [http-nio-8081-exec-2]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:38.910+0100 DEBUG              [http-nio-8081-exec-2]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:39.515+0100 INFO               [http-nio-8081-exec-3]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:39.515+0100 DEBUG              [http-nio-8081-exec-3]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:39.985+0100 INFO               [http-nio-8081-exec-6]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:39.985+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:41.164+0100 INFO               [http-nio-8081-exec-5]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:35:41.164+0100 DEBUG              [http-nio-8081-exec-5]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:36:35.122+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 36840 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+2024-11-07T11:36:35.123+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+2024-11-07T11:36:35.124+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-07T11:36:39.773+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 5.761 seconds (process running for 6.431)
+2024-11-07T11:37:17.804+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:37:17.805+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:37:19.292+0100 INFO               [http-nio-8081-exec-3]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:37:19.292+0100 DEBUG              [http-nio-8081-exec-3]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:40:53.212+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 66448 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+2024-11-07T11:40:53.213+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+2024-11-07T11:40:53.214+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-07T11:40:57.818+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 5.672 seconds (process running for 6.447)
+2024-11-07T11:41:04.864+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:41:04.865+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:41:06.084+0100 INFO               [http-nio-8081-exec-2]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:41:06.085+0100 DEBUG              [http-nio-8081-exec-2]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:42:49.199+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 50444 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+2024-11-07T11:42:49.200+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+2024-11-07T11:42:49.201+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-07T11:42:53.560+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 5.415 seconds (process running for 6.123)
+2024-11-07T11:43:07.577+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:43:07.578+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+2024-11-07T11:56:32.523+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 64808 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+2024-11-07T11:56:32.526+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-07T12:03:31.913+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 69720 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+2024-11-07T12:03:31.915+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-07T12:03:37.553+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 6.836 seconds (process running for 7.723)
+[CUSTOM LOG] 2024-11-07T12:05:15.350+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 64432 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-11-07T12:05:15.351+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-11-07T12:05:20.149+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 5.842 seconds (process running for 6.577)
+[CUSTOM LOG] 2024-11-07T12:07:10.837+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 61808 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-11-07T12:07:10.839+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-11-07T12:07:15.700+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 6.031 seconds (process running for 6.818)
+[CUSTOM LOG] 2024-11-07T12:09:36.748+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 67492 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-11-07T12:09:36.752+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-11-07T12:09:42.331+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 6.429 seconds (process running for 7.355)
+[CUSTOM LOG] 2024-11-07T12:15:50.512+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 70408 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-11-07T12:15:50.514+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-11-07T12:15:55.496+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 5.801 seconds (process running for 6.625)
+[CUSTOM LOG] 2024-11-07T12:17:23.820+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 57440 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-11-07T12:17:23.823+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-11-07T12:17:28.625+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 5.465 seconds (process running for 6.194)
+[CUSTOM LOG] 2024-11-07T12:20:10.289+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 66840 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-11-07T12:20:10.291+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-11-07T12:20:14.977+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 5.344 seconds (process running for 6.082)
+[CUSTOM LOG] 2024-11-07T12:20:27.683+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 66444 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-11-07T12:20:27.685+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2024-11-07T12:20:27.686+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-11-07T12:20:32.410+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 5.409 seconds (process running for 6.136)
+[CUSTOM LOG] 2024-11-07T12:21:30.709+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:21:30.709+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:25:31.719+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 70484 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-11-07T12:25:31.721+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2024-11-07T12:25:31.722+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-11-07T12:25:37.600+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 7.283 seconds (process running for 8.468)
+[CUSTOM LOG] 2024-11-07T12:26:26.493+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:26.494+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:26.624+0100 INFO               [http-nio-8081-exec-4]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:26.625+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:28.129+0100 INFO               [http-nio-8081-exec-5]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:28.130+0100 DEBUG              [http-nio-8081-exec-5]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:28.725+0100 INFO               [http-nio-8081-exec-8]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:28.725+0100 DEBUG              [http-nio-8081-exec-8]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:30.247+0100 INFO               [http-nio-8081-exec-9]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:30.248+0100 DEBUG              [http-nio-8081-exec-9]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:31.898+0100 INFO               [http-nio-8081-exec-2]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:31.898+0100 DEBUG              [http-nio-8081-exec-2]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:32.380+0100 INFO               [http-nio-8081-exec-3]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:32.380+0100 DEBUG              [http-nio-8081-exec-3]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:32.863+0100 INFO               [http-nio-8081-exec-6]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:32.864+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:33.439+0100 INFO               [http-nio-8081-exec-7]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:33.439+0100 DEBUG              [http-nio-8081-exec-7]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:34.041+0100 INFO               [http-nio-8081-exec-10]        pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:34.041+0100 DEBUG              [http-nio-8081-exec-10]        pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:34.662+0100 INFO               [http-nio-8081-exec-4]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:34.662+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:35.237+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:26:35.237+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:27:28.276+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 70396 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-11-07T12:27:28.277+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2024-11-07T12:27:28.277+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-11-07T12:27:34.419+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 7.578 seconds (process running for 8.428)
+[CUSTOM LOG] 2024-11-07T12:27:39.508+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T12:27:39.508+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:19:59.040+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 43544 (C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\BackendLabs\3tiwfullstack-labs-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-11-07T13:19:59.041+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2024-11-07T13:19:59.042+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-11-07T13:20:10.348+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 13.669 seconds (process running for 14.599)
+[CUSTOM LOG] 2024-11-07T13:20:16.781+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:20:16.782+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:21:09.333+0100 INFO               [http-nio-8081-exec-2]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:21:09.333+0100 DEBUG              [http-nio-8081-exec-2]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:21:10.390+0100 INFO               [http-nio-8081-exec-4]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:21:10.392+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:21:50.301+0100 INFO               [http-nio-8081-exec-8]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:21:50.301+0100 DEBUG              [http-nio-8081-exec-8]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:00.430+0100 INFO               [http-nio-8081-exec-7]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:00.431+0100 DEBUG              [http-nio-8081-exec-7]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:01.686+0100 INFO               [http-nio-8081-exec-6]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:01.686+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:02.752+0100 INFO               [http-nio-8081-exec-5]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:02.752+0100 DEBUG              [http-nio-8081-exec-5]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:12.503+0100 INFO               [http-nio-8081-exec-9]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:12.503+0100 DEBUG              [http-nio-8081-exec-9]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:18.015+0100 INFO               [http-nio-8081-exec-10]        pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:18.015+0100 DEBUG              [http-nio-8081-exec-10]        pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:19.125+0100 INFO               [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:19.125+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:20.226+0100 INFO               [http-nio-8081-exec-2]         pxl.be.review.controller.EmployeeController - Getting employees
+[CUSTOM LOG] 2024-11-07T13:22:20.226+0100 DEBUG              [http-nio-8081-exec-2]         pxl.be.review.controller.EmployeeController - Getting employees

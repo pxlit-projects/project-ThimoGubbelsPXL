@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+  research-db:
+    image: mysql:latest
+    ports:
+      - "3310:3306"
+    environment:
+      MYSQL_DATABASE: 'microservicesDb'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'admin'
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
