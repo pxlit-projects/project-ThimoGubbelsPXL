@@ -1,0 +1,28 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="max-w-lg mx-auto p-4 bg-white shadow-md rounded">
+    <div class="mb-4">
+      <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+      <input id="username" formControlName="username" placeholder="Enter your username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      @if(loginForm.get('username')?.invalid && loginForm.get('username')?.touched){
+      <div class="text-red-500 text-xs italic mt-2">
+        Username is required
+      </div>
+      }
+    </div>
+    <div class="mb-4">
+      <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+      <input id="password" type="password" formControlName="password" placeholder="Enter your password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
+      <div class="text-red-500 text-xs italic mt-2">
+        Password is required
+      </div>
+      }
+    </div>
+    @if(loginFailed){
+    <div  class="text-red-500 text-xs italic mt-2">
+      Invalid username or password
+    </div>
+}
+    <button type="submit" [disabled]="loginForm.invalid" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+      Login
+    </button>
+  </form>
