@@ -8,6 +8,7 @@ import pxl.be.post.api.data.NotificationRequest;
 import pxl.be.post.client.NotificationClient;
 import pxl.be.post.domain.Employee;
 import pxl.be.post.exception.ResourceNotFoundException;
+import pxl.be.post.repository.EmployeeRepository;
 import pxl.be.post.repository.PostRepository;
 import pxl.be.post.api.data.EmployeeResponse;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeService implements IEmployeeService {
 
-    private final PostRepository postRepository;
+    private final EmployeeRepository postRepository;
 
     private final NotificationClient notificationClient;
 
