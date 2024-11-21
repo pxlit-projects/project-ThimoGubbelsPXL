@@ -8,19 +8,26 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: employee-service
-          uri: lb://employee-service
+        - id: post-service
+          uri: lb://post-service
           predicates:
-            - Path=/employee/**
+            - Path=/post/**
           filters:
-            - RewritePath=/employee/(?<path>.*), /$\{path}
-        - id: department-service
-          uri: lb://department-service
-          predicates:
-            - Path=/department/**
-          filters:
-            - RewritePath=/department/(?<path>.*), /$\{path}
-
+            - RewritePath=/post/(?<path>.*), /$\{path}
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+              allowedHeaders: '*'
+      globalcors:
+        cors-configurations:
+          '[/**]':  # Applies to all paths
+            allowedOrigins: "*"
+            allowedMethods: GET, POST, PUT, DELETE, OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
 eureka:
   client:
     serviceUrl:
