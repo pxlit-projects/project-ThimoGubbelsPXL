@@ -17,6 +17,11 @@
       </div>
       }
     </div>
+    @if(errorMessage){
+    <div  class="text-red-500 text-xs italic mt-2">
+      {{ errorMessage }}
+    </div>
+  }
     <button type="submit" [disabled]="postForm.invalid" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
       Create Post
     </button>

@@ -6,17 +6,17 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUser: { username: string, password: string } | null = null;
+  private currentUser: { username: string, password: string, role: string } | null = null;
 
   constructor(private router: Router) {
     // Automatically log in a user for now
-    this.authenticate('user1', 'password1');
+    this.authenticate('user1', 'password1',);
   }
 
   // Simulate a user database
-  private users: { username: string, password: string }[] = [
-    { username: 'user1', password: bcrypt.hashSync('password1', 10) },
-    { username: 'user2', password: bcrypt.hashSync('password2', 10) }
+  private users: { username: string, password: string, role:string }[] = [
+    { username: 'user1', password: bcrypt.hashSync('password1', 10), role: 'editor' },
+    { username: 'user2', password: bcrypt.hashSync('password2', 10),  role: 'user' }
   ];
 
   // Method to authenticate user
@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   // Method to get the current user
-  getCurrentUser(): { username: string, password: string } | null {
+  getCurrentUser(): { username: string, password: string, role: string } | null {
     return this.currentUser;
   }
 

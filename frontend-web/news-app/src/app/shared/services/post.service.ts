@@ -12,9 +12,9 @@ export class PostService {
   api: string = environment.apiUrl;
   http: HttpClient = inject(HttpClient);
 
-  createPost(post: Post) : Observable<Post> {
-
-    return this.http.post<Post>(this.api + 'post/api/post', post);
+  createPost(post: Post, role: string) : Observable<Post> {
+    const headers = new HttpHeaders().set('Role', role);
+    return this.http.post<Post>(this.api + 'post/api/post', post,{ headers });
   }
   
 }
