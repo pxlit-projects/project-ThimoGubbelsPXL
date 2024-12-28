@@ -35,6 +35,7 @@ public class PostService implements IPostService{
         Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException("Post with Id:" + postId + "not found"));
         post.setTitle(createPostRequest.getTitle());
         post.setContent(createPostRequest.getContent());
+        post.setConcept(createPostRequest.getIsConcept());
 
 
         log.debug("Updating post with id: " + postId);
@@ -43,7 +44,7 @@ public class PostService implements IPostService{
 
     public List<PostResponse> getAllPosts(){
         List<Post> posts = postRepository.findAll();
-        return posts.stream().map(post -> mapToPostResponse(post)).toList();
+        return posts.stream().map(this::mapToPostResponse).toList();
     }
 
     private PostResponse mapToPostResponse(Post post){

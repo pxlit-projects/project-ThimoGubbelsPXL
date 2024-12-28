@@ -1,5 +1,5 @@
 export class Post {
-    id?: string;
+    id?: Number;
     title: string;
     content: string;
     author: string;

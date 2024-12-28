@@ -45,7 +45,7 @@ public class PostController {
         if(!headerValue.equals("editor")){
             throw new UnAuthorizedException("Unauthorized access");
         }
-        log.info("Updating post");
+        log.info("Updating post" + createPostRequest.toString());
         log.info(createPostRequest.toString());
         log.debug("Updating post");
         postService.updatePost(postId, createPostRequest);

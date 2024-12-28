@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, Signal,EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../../../shared/services/post.service';
 import { Post } from '../../../../shared/models/post';
@@ -25,12 +25,17 @@ export class CreatePostComponent implements OnInit {
     content: ['', Validators.required],
     isConcept: [false]
   });
-  postId: string | null = null;
+  postId: Number | null = null;
+
+  @Output() postCreated = new EventEmitter<void>();
 
   ngOnInit(): void {
-    this.postId = this.route.snapshot.paramMap.get('id');
+    this.postId = Number(this.route.snapshot.paramMap.get('id'));
+    this.postService.getPosts();
+    console.log(this.postId);
     if (this.postId) {
-      const post = this.postService.posts().find(p => p.id === this.postId);
+      const post = this.postService.posts.find(p => p.id === this.postId);
+
       if (post) {
         this.postForm.patchValue(post);
       }
@@ -42,25 +47,28 @@ export class CreatePostComponent implements OnInit {
       const currentUser = this.authService.getCurrentUser();
       if (currentUser !== null) {
         const role = currentUser.role;
+
         const newPost: Post = { ...this.postForm.value, author: currentUser.username, date: new Date() };
+        console.log(newPost);
         if (this.postId) {
-          this.postService.updatePost({ ...newPost, id: this.postId }).subscribe({
+          this.postService.updatePost(newPost, this.postId).subscribe({
             next: () => {
               this.router.navigate(['/posts']);
-              this.errorMessage = null;
+              this.postService.errorMessage.set(null);
             },
-            error: (err:Error) => {
-              this.errorMessage = "Error occured"
+            error: (err: Error) => {
+              this.postService.errorMessage.set("Error occured");
             }
           });
         } else {
           this.postService.createPost(newPost).subscribe({
             next: () => {
               this.postForm.reset();
-              this.errorMessage = null;
+              this.postCreated.emit();
+              this.postService.errorMessage.set(null);
             },
-            error: (err:Error) => {
-              this.errorMessage = "Errro coccured";
+            error: (err: Error) => {
+              this.postService.errorMessage.set("Error occured");
             }
           });
         }
