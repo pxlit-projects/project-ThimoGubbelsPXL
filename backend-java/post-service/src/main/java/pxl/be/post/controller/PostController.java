@@ -7,9 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pxl.be.post.api.data.CreatePostRequest;
+import pxl.be.post.api.data.PostResponse;
 import pxl.be.post.exception.UnAuthorizedException;
 import pxl.be.post.service.IPostService;
 
@@ -35,5 +37,27 @@ public class PostController {
         log.debug("Creating post");
         postService.createPost(createPostRequest);
 
+    }
+
+    @PutMapping("/{postId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePost(@RequestHeader(value = "Role", required = true) String headerValue, @PathVariable Long postId, @Valid @RequestBody CreatePostRequest createPostRequest){
+        if(!headerValue.equals("editor")){
+            throw new UnAuthorizedException("Unauthorized access");
+        }
+        log.info("Updating post");
+        log.info(createPostRequest.toString());
+        log.debug("Updating post");
+        postService.updatePost(postId, createPostRequest);
+
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity getAllPosts(){
+        log.info("Getting all posts");
+        log.debug("Getting all posts");
+
+        return new ResponseEntity(postService.getAllPosts(), HttpStatus.OK);
     }
 }
