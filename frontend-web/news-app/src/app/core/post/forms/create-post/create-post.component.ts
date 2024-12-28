@@ -44,13 +44,26 @@ export class CreatePostComponent implements OnInit {
         const role = currentUser.role;
         const newPost: Post = { ...this.postForm.value, author: currentUser.username, date: new Date() };
         if (this.postId) {
-          this.postService.updatePost({ ...newPost, id: this.postId });
-          this.router.navigate(['/posts']);
+          this.postService.updatePost({ ...newPost, id: this.postId }).subscribe({
+            next: () => {
+              this.router.navigate(['/posts']);
+              this.errorMessage = null;
+            },
+            error: (err:Error) => {
+              this.errorMessage = "Error occured"
+            }
+          });
         } else {
-          this.postService.createPost(newPost, role);
-          this.postForm.reset();
+          this.postService.createPost(newPost).subscribe({
+            next: () => {
+              this.postForm.reset();
+              this.errorMessage = null;
+            },
+            error: (err:Error) => {
+              this.errorMessage = "Errro coccured";
+            }
+          });
         }
-        this.errorMessage = null;
       } else {
         this.errorMessage = 'User not authenticated';
       }
