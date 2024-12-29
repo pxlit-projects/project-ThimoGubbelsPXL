@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
-
+@Builder
 public class CreatePostRequest {
 
     @NotBlank(message = "Title is mandatory")

@@ -1,5 +1,4 @@
 package pxl.be.post.service;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -29,34 +28,42 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.when;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@SpringBootTest
+@Testcontainers
+@TestPropertySource(properties = {
+        "eureka.client.enabled=false",
+        "spring.cloud.discovery.enabled=false",
+        "spring.datasource.url=jdbc:mysql://localhost:3310/microservicesDb",
+        "spring.datasource.username=user",
+        "spring.datasource.password=password",
+        "spring.jpa.hibernate.ddl-auto=create"
+})
+public class PostServiceIntegrationTests {
+    @Container
+    private static MySQLContainer sqlContainer = new MySQLContainer("mysql:5.7.37");
 
-public class PostServiceTests {
-
-
-
-    @InjectMocks
+    @Autowired
     private PostService postService;
 
-
-
-    @Mock
-    private PostRepository mockPostRepository;
-
-
-
+    @Autowired
+    private PostRepository postRepository;
+    @DynamicPropertySource
+    static void registerMySQLProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", sqlContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", sqlContainer::getUsername);
+        registry.add("spring.datasource.password", sqlContainer::getPassword);
+    }
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this);
-
+        postRepository.deleteAll();
     }
 
-
-
-
     @Test
-    public void testCreatePostShouldInvokeRepositorySave() {
+    public void testCreatePostIntegration() {
         // Assemble
         CreatePostRequest createPostRequest = CreatePostRequest.builder()
                 .title("Test Post")
@@ -65,56 +72,24 @@ public class PostServiceTests {
                 .date(new Date())
                 .build();
 
-        Post post = Post.builder()
-                .title(createPostRequest.getTitle())
-                .content(createPostRequest.getContent())
-                .author(createPostRequest.getAuthor())
-                .date(createPostRequest.getDate())
-                .build();
-
         // Act
         postService.createPost(createPostRequest);
 
         // Assert
-        verify(mockPostRepository).save(post);
+        assertEquals(1, postRepository.findAll().size());
     }
 
     @Test
-    public void testUpdatePostShouldInvokeRepositorySave() {
+    public void testUpdatePostIntegration() {
         // Assemble
-        Long postId = 1L;
-        CreatePostRequest createPostRequest = CreatePostRequest.builder()
-                .title("Updated Post")
-                .content("This is an updated post.")
-                .author("Author")
-                .date(new Date())
-                .isConcept(true)
-                .build();
-
-        Post existingPost = Post.builder()
-                .id(postId)
+        Post post = Post.builder()
                 .title("Old Post")
                 .content("This is an old post.")
                 .author("Author")
                 .date(new Date())
                 .build();
+        postRepository.save(post);
 
-        when(mockPostRepository.findById(postId)).thenReturn(Optional.of(existingPost));
-
-        // Act
-        postService.updatePost(postId, createPostRequest);
-
-        // Assert
-        assertEquals("Updated Post", existingPost.getTitle());
-        assertEquals("This is an updated post.", existingPost.getContent());
-        assertTrue(existingPost.isConcept());
-        verify(mockPostRepository).save(existingPost);
-    }
-
-    @Test
-    public void testUpdatePostShouldThrowResourceNotFoundException() {
-        // Assemble
-        Long postId = 1L;
         CreatePostRequest createPostRequest = CreatePostRequest.builder()
                 .title("Updated Post")
                 .content("This is an updated post.")
@@ -123,17 +98,20 @@ public class PostServiceTests {
                 .isConcept(true)
                 .build();
 
-        when(mockPostRepository.findById(postId)).thenReturn(Optional.empty());
+        // Act
+        postService.updatePost(post.getId(), createPostRequest);
 
-        // Act & Assert
-        assertThrows(ResourceNotFoundException.class, () -> postService.updatePost(postId, createPostRequest));
+        // Assert
+        Post updatedPost = postRepository.findById(post.getId()).orElseThrow();
+        assertEquals("Updated Post", updatedPost.getTitle());
+        assertEquals("This is an updated post.", updatedPost.getContent());
+        assertTrue(updatedPost.isConcept());
     }
 
     @Test
-    public void testGetAllPostsShouldReturnPostResponses() {
+    public void testGetAllPostsIntegration() {
         // Assemble
         Post post1 = Post.builder()
-                .id(1L)
                 .title("Post 1")
                 .content("Content 1")
                 .author("Author 1")
@@ -141,14 +119,14 @@ public class PostServiceTests {
                 .build();
 
         Post post2 = Post.builder()
-                .id(2L)
                 .title("Post 2")
                 .content("Content 2")
                 .author("Author 2")
                 .date(new Date())
                 .build();
 
-        when(mockPostRepository.findAll()).thenReturn(List.of(post1, post2));
+        postRepository.save(post1);
+        postRepository.save(post2);
 
         // Act
         List<PostResponse> postResponses = postService.getAllPosts();
@@ -158,6 +136,5 @@ public class PostServiceTests {
         assertEquals("Post 1", postResponses.get(0).getTitle());
         assertEquals("Post 2", postResponses.get(1).getTitle());
     }
-
 
 }
