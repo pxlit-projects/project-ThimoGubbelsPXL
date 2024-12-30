@@ -1,6 +1,7 @@
 package pxl.be.post.api.data;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,9 +15,11 @@ import java.util.Date;
 public class CreatePostRequest {
 
     @NotBlank(message = "Title is mandatory")
+    @NotEmpty(message = "Content is mandatory")
     private String title;
 
     @NotBlank(message = "Content is mandatory")
+    @NotEmpty(message = "Content is mandatory")
     private String content;
 
     @NotNull(message = "Author is mandatory")

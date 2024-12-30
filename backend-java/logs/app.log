@@ -1,13 +1,115 @@
-[CUSTOM LOG] 2024-11-14T10:45:07.337+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting EmployeeApplication using Java 21.0.2 with PID 103676 (C:\Users\12200538\Documents\Java\project-ThimoGubbelsPXL\backend-java\employee\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\project-ThimoGubbelsPXL\backend-java)
-[CUSTOM LOG] 2024-11-14T10:45:07.347+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[CUSTOM LOG] 2024-11-14T10:45:07.348+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
-[CUSTOM LOG] 2024-11-14T10:45:17.970+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started EmployeeApplication in 13.229 seconds (process running for 14.576)
-[CUSTOM LOG] 2024-11-14T10:46:18.431+0100 INFO               [http-nio-8081-exec-4]         pxl.be.review.controller.EmployeeController - Getting employees
-[CUSTOM LOG] 2024-11-14T10:46:18.431+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.review.controller.EmployeeController - Getting employees
-[CUSTOM LOG] 2024-11-14T13:44:41.141+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting PostServiceApplication using Java 21.0.2 with PID 98352 (C:\Users\12200538\Documents\Java\project-ThimoGubbelsPXL\backend-java\post-service\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\project-ThimoGubbelsPXL\backend-java)
-[CUSTOM LOG] 2024-11-14T13:44:41.143+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[CUSTOM LOG] 2024-11-14T13:44:41.144+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
-[CUSTOM LOG] 2024-11-14T13:45:19.836+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Starting PostServiceApplication using Java 21.0.2 with PID 50896 (C:\Users\12200538\Documents\Java\project-ThimoGubbelsPXL\backend-java\post-service\target\classes started by 12200538 in C:\Users\12200538\Documents\Java\project-ThimoGubbelsPXL\backend-java)
-[CUSTOM LOG] 2024-11-14T13:45:19.838+0100 DEBUG              [main]                         pxl.be.review.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[CUSTOM LOG] 2024-11-14T13:45:19.840+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
-[CUSTOM LOG] 2024-11-14T13:45:30.739+0100 INFO               [main]                         pxl.be.review.PostServiceApplication - Started PostServiceApplication in 13.705 seconds (process running for 15.599)
+[CUSTOM LOG] 2024-12-30T12:57:46.153+0100 INFO               [main]                         pxl.be.post.PostServiceApplication - Starting PostServiceApplication using Java 21.0.2 with PID 13392 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\post-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-12-30T12:57:46.163+0100 DEBUG              [main]                         pxl.be.post.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2024-12-30T12:57:46.164+0100 INFO               [main]                         pxl.be.post.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-12-30T12:58:49.642+0100 INFO               [main]                         pxl.be.post.PostServiceApplication - Starting PostServiceApplication using Java 21.0.2 with PID 22464 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\post-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-12-30T12:58:49.644+0100 DEBUG              [main]                         pxl.be.post.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2024-12-30T12:58:49.646+0100 INFO               [main]                         pxl.be.post.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-12-30T12:58:58.164+0100 INFO               [main]                         pxl.be.post.PostServiceApplication - Started PostServiceApplication in 10.536 seconds (process running for 11.814)
+[CUSTOM LOG] 2024-12-30T13:00:42.113+0100 INFO               [http-nio-8081-exec-1]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:00:42.114+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:00:57.037+0100 INFO               [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Updating postCreatePostRequest(title=test2222, content=222, author=user1, date=Mon Dec 30 13:00:56 CET 2024, isConcept=true)
+[CUSTOM LOG] 2024-12-30T13:00:57.037+0100 INFO               [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - CreatePostRequest(title=test2222, content=222, author=user1, date=Mon Dec 30 13:00:56 CET 2024, isConcept=true)
+[CUSTOM LOG] 2024-12-30T13:00:57.037+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Updating post
+[CUSTOM LOG] 2024-12-30T13:00:57.077+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Updating post with id: 36
+[CUSTOM LOG] 2024-12-30T13:00:57.233+0100 INFO               [http-nio-8081-exec-3]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:00:57.233+0100 DEBUG              [http-nio-8081-exec-3]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:01:05.723+0100 INFO               [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Updating postCreatePostRequest(title=test, content=test, author=user1, date=Mon Dec 30 13:01:05 CET 2024, isConcept=true)
+[CUSTOM LOG] 2024-12-30T13:01:05.723+0100 INFO               [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - CreatePostRequest(title=test, content=test, author=user1, date=Mon Dec 30 13:01:05 CET 2024, isConcept=true)
+[CUSTOM LOG] 2024-12-30T13:01:05.724+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Updating post
+[CUSTOM LOG] 2024-12-30T13:01:05.735+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Updating post with id: 1
+[CUSTOM LOG] 2024-12-30T13:01:05.787+0100 INFO               [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:01:05.787+0100 DEBUG              [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:01:51.054+0100 INFO               [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Updating postCreatePostRequest(title=test, content=test, author=user1, date=Mon Dec 30 13:01:51 CET 2024, isConcept=true)
+[CUSTOM LOG] 2024-12-30T13:01:51.055+0100 INFO               [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - CreatePostRequest(title=test, content=test, author=user1, date=Mon Dec 30 13:01:51 CET 2024, isConcept=true)
+[CUSTOM LOG] 2024-12-30T13:01:51.055+0100 DEBUG              [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Updating post
+[CUSTOM LOG] 2024-12-30T13:01:51.067+0100 DEBUG              [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Updating post with id: 1
+[CUSTOM LOG] 2024-12-30T13:01:51.113+0100 INFO               [http-nio-8081-exec-2]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:01:51.113+0100 DEBUG              [http-nio-8081-exec-2]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:01:53.726+0100 INFO               [http-nio-8081-exec-8]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:01:53.726+0100 DEBUG              [http-nio-8081-exec-8]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:01:58.799+0100 INFO               [http-nio-8081-exec-10]        pxl.be.post.controller.PostController - Updating postCreatePostRequest(title=test2244, content=test, author=user1, date=Mon Dec 30 13:01:58 CET 2024, isConcept=true)
+[CUSTOM LOG] 2024-12-30T13:01:58.799+0100 INFO               [http-nio-8081-exec-10]        pxl.be.post.controller.PostController - CreatePostRequest(title=test2244, content=test, author=user1, date=Mon Dec 30 13:01:58 CET 2024, isConcept=true)
+[CUSTOM LOG] 2024-12-30T13:01:58.799+0100 DEBUG              [http-nio-8081-exec-10]        pxl.be.post.controller.PostController - Updating post
+[CUSTOM LOG] 2024-12-30T13:01:58.811+0100 DEBUG              [http-nio-8081-exec-10]        pxl.be.post.controller.PostController - Updating post with id: 26
+[CUSTOM LOG] 2024-12-30T13:01:58.860+0100 INFO               [http-nio-8081-exec-9]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:01:58.861+0100 DEBUG              [http-nio-8081-exec-9]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:03:26.700+0100 INFO               [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:03:26.700+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:04:33.015+0100 INFO               [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:04:33.016+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:05:34.259+0100 INFO               [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:05:34.260+0100 DEBUG              [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:06:03.703+0100 INFO               [http-nio-8081-exec-2]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:06:03.704+0100 DEBUG              [http-nio-8081-exec-2]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:09:15.637+0100 INFO               [http-nio-8081-exec-10]        pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:09:15.638+0100 DEBUG              [http-nio-8081-exec-10]        pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:09:22.089+0100 INFO               [http-nio-8081-exec-9]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:09:22.090+0100 DEBUG              [http-nio-8081-exec-9]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:10:25.524+0100 INFO               [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:10:25.524+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:10:58.468+0100 INFO               [http-nio-8081-exec-3]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:10:58.468+0100 DEBUG              [http-nio-8081-exec-3]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:11:03.022+0100 INFO               [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:11:03.022+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:11:10.624+0100 INFO               [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:11:10.624+0100 DEBUG              [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:11:14.555+0100 INFO               [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:11:14.555+0100 DEBUG              [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Filtering posts with content: test, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:13:05.113+0100 INFO               [main]                         pxl.be.post.PostServiceApplication - Starting PostServiceApplication using Java 21.0.2 with PID 19652 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\post-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2024-12-30T13:13:05.115+0100 DEBUG              [main]                         pxl.be.post.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2024-12-30T13:13:05.117+0100 INFO               [main]                         pxl.be.post.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2024-12-30T13:13:14.420+0100 INFO               [main]                         pxl.be.post.PostServiceApplication - Started PostServiceApplication in 12.106 seconds (process running for 13.805)
+[CUSTOM LOG] 2024-12-30T13:14:18.984+0100 INFO               [http-nio-8081-exec-1]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:14:18.985+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:14:23.736+0100 INFO               [http-nio-8081-exec-2]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:14:23.736+0100 DEBUG              [http-nio-8081-exec-2]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:14:27.995+0100 INFO               [http-nio-8081-exec-3]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:14:27.996+0100 DEBUG              [http-nio-8081-exec-3]         pxl.be.post.controller.PostController - Filtering posts with content: test, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:14:33.261+0100 INFO               [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:14:33.261+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:14:40.407+0100 INFO               [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Creating post
+[CUSTOM LOG] 2024-12-30T13:14:40.407+0100 INFO               [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - CreatePostRequest(title=test, content=123, author=user1, date=Mon Dec 30 13:14:40 CET 2024, isConcept=false)
+[CUSTOM LOG] 2024-12-30T13:14:40.407+0100 DEBUG              [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Creating post
+[CUSTOM LOG] 2024-12-30T13:14:40.408+0100 DEBUG              [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Saving post with title: test
+[CUSTOM LOG] 2024-12-30T13:14:40.804+0100 INFO               [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:14:40.804+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:14:51.559+0100 INFO               [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:14:51.560+0100 DEBUG              [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:14:56.422+0100 INFO               [http-nio-8081-exec-8]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:14:56.422+0100 DEBUG              [http-nio-8081-exec-8]         pxl.be.post.controller.PostController - Filtering posts with content: test, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:15:00.184+0100 INFO               [http-nio-8081-exec-9]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:15:00.185+0100 DEBUG              [http-nio-8081-exec-9]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:15:09.182+0100 INFO               [http-nio-8081-exec-10]        pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:15:09.182+0100 DEBUG              [http-nio-8081-exec-10]        pxl.be.post.controller.PostController - Filtering posts with content: null, author: user, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:15:14.227+0100 INFO               [http-nio-8081-exec-1]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:15:14.227+0100 DEBUG              [http-nio-8081-exec-1]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: user1, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:15:17.490+0100 INFO               [http-nio-8081-exec-2]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:15:17.490+0100 DEBUG              [http-nio-8081-exec-2]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: user, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:15:19.653+0100 INFO               [http-nio-8081-exec-3]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:15:19.653+0100 DEBUG              [http-nio-8081-exec-3]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: user1, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:15:48.076+0100 INFO               [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:15:48.076+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:15:58.788+0100 INFO               [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:15:58.789+0100 DEBUG              [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:16:13.298+0100 INFO               [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Updating postCreatePostRequest(title=test, content=123, author=user1, date=Mon Dec 30 13:16:13 CET 2024, isConcept=true)
+[CUSTOM LOG] 2024-12-30T13:16:13.298+0100 INFO               [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - CreatePostRequest(title=test, content=123, author=user1, date=Mon Dec 30 13:16:13 CET 2024, isConcept=true)
+[CUSTOM LOG] 2024-12-30T13:16:13.298+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Updating post
+[CUSTOM LOG] 2024-12-30T13:16:13.337+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Updating post with id: 1
+[CUSTOM LOG] 2024-12-30T13:16:14.307+0100 INFO               [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:16:14.307+0100 DEBUG              [http-nio-8081-exec-7]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:16:20.016+0100 INFO               [http-nio-8081-exec-8]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:16:20.016+0100 DEBUG              [http-nio-8081-exec-8]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:16:28.097+0100 INFO               [http-nio-8081-exec-9]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:16:28.097+0100 DEBUG              [http-nio-8081-exec-9]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: null, startDate: null, endDate: null
+[CUSTOM LOG] 2024-12-30T13:16:59.890+0100 INFO               [http-nio-8081-exec-10]        pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:16:59.891+0100 DEBUG              [http-nio-8081-exec-10]        pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:18:24.422+0100 INFO               [http-nio-8081-exec-2]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:18:24.423+0100 DEBUG              [http-nio-8081-exec-2]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:18:27.094+0100 INFO               [http-nio-8081-exec-3]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:18:27.094+0100 DEBUG              [http-nio-8081-exec-3]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:18:46.211+0100 INFO               [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:18:46.211+0100 DEBUG              [http-nio-8081-exec-4]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:19:12.264+0100 INFO               [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:19:12.264+0100 DEBUG              [http-nio-8081-exec-5]         pxl.be.post.controller.PostController - Getting all posts
+[CUSTOM LOG] 2024-12-30T13:19:12.511+0100 INFO               [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Filtering posts
+[CUSTOM LOG] 2024-12-30T13:19:12.512+0100 DEBUG              [http-nio-8081-exec-6]         pxl.be.post.controller.PostController - Filtering posts with content: null, author: null, startDate: null, endDate: null

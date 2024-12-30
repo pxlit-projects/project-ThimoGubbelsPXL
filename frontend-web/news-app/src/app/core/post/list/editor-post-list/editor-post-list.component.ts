@@ -48,6 +48,7 @@ export class EditorPostListComponent implements OnInit {
     this.postService.getPosts().subscribe({
       next: (posts: Post[]) => {
         this.postService.posts = posts;
+        console.log(posts);
         this.postService.errorMessage.set(null);
       },
       error: (err:Error) => {

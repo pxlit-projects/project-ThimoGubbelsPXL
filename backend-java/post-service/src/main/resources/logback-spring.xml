@@ -20,7 +20,7 @@
         </encoder>
     </appender>
 
-    <logger name="pxl.be.review" level="DEBUG" additivity="false">
+    <logger name="pxl.be.post" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="APP_LOGGER"/>
     </logger>
