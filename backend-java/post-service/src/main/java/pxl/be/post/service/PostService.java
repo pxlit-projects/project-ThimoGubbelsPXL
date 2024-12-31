@@ -55,7 +55,7 @@ public class PostService implements IPostService{
 
     public Page<PublicPostResponse> getAllPublicPosts(Pageable pageable) {
         Page<Post> posts = postRepository.findAll(pageable);
-        List<PublicPostResponse> postResponses = posts.stream().filter(Post::isConcept).map(this::mapToPublicPostResponse).collect(Collectors.toList());
+        List<PublicPostResponse> postResponses = posts.stream().filter(post -> !post.isConcept()).map(this::mapToPublicPostResponse).collect(Collectors.toList());
         return new PageImpl<>(postResponses, pageable, posts.getTotalElements());
     }
 
@@ -65,7 +65,7 @@ public class PostService implements IPostService{
                 .filter(post -> (content == null || post.getContent().contains(content)) &&
                         (author == null || post.getAuthor().contains(author)) &&
                         (startDate == null || !post.getDate().before(startDate)) &&
-                        (endDate == null || !post.getDate().after(endDate)) &&!post.isConcept())
+                        (endDate == null || !post.getDate().after(endDate)) && !post.isConcept())
                 .map(this::mapToPublicPostResponse)
                 .collect(Collectors.toList());
         return new PageImpl<>(filteredPosts, pageable, filteredPosts.size());

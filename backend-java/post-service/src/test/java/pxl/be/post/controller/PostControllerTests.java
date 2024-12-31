@@ -6,10 +6,15 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import pxl.be.post.api.data.CreatePostRequest;
 import pxl.be.post.api.data.PostResponse;
+import pxl.be.post.api.data.PublicPostResponse;
 import pxl.be.post.exception.UnAuthorizedException;
 import pxl.be.post.service.IPostService;
 
@@ -146,5 +151,62 @@ public class PostControllerTests {
                 .andExpect(jsonPath("$[1].title").value("Post 2"));
 
         Mockito.verify(postService).getAllPosts();
+    }
+
+    @Test
+    public void testGetAllPublicPosts() throws Exception {
+        PublicPostResponse postResponse1 = PublicPostResponse.builder()
+                .id(1L)
+                .title("Post 1")
+                .content("Content 1")
+                .author("Author 1")
+                .date(new Date())
+                .build();
+
+        PublicPostResponse postResponse2 = PublicPostResponse.builder()
+                .id(2L)
+                .title("Post 2")
+                .content("Content 2")
+                .author("Author 2")
+                .date(new Date())
+                .build();
+
+        List<PublicPostResponse> postResponses = List.of(postResponse1, postResponse2);
+        Page<PublicPostResponse> page = new PageImpl<>(postResponses, PageRequest.of(0, 10), postResponses.size());
+        Mockito.when(postService.getAllPublicPosts(Mockito.any(Pageable.class))).thenReturn(page);
+
+        mockMvc.perform(get("/api/post/public")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content.length()").value(2))
+                .andExpect(jsonPath("$.content[0].title").value("Post 1"))
+                .andExpect(jsonPath("$.content[1].title").value("Post 2"));
+
+        Mockito.verify(postService).getAllPublicPosts(Mockito.any(Pageable.class));
+    }
+
+    @Test
+    public void testFilterPosts() throws Exception {
+        PublicPostResponse postResponse1 = PublicPostResponse.builder()
+                .id(1L)
+                .title("Post 1")
+                .content("Content 1")
+                .author("Author 1")
+                .date(new Date())
+                .build();
+
+        List<PublicPostResponse> postResponses = List.of(postResponse1);
+        Page<PublicPostResponse> page = new PageImpl<>(postResponses, PageRequest.of(0, 10), postResponses.size());
+        Mockito.when(postService.filterPosts(Mockito.anyString(), Mockito.anyString(), Mockito.any(), Mockito.any(), Mockito.any(Pageable.class))).thenReturn(page);
+
+        mockMvc.perform(get("/api/post/filter")
+                        .param("content", "Content 1")
+                        .param("author", "Author 1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content.length()").value(1))
+                .andExpect(jsonPath("$.content[0].title").value("Post 1"));
+
+        Mockito.verify(postService).filterPosts(Mockito.anyString(), Mockito.anyString(), Mockito.any(), Mockito.any(), Mockito.any(Pageable.class));
     }
 }

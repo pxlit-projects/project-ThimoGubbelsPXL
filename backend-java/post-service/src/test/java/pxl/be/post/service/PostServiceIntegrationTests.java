@@ -16,10 +16,14 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import pxl.be.post.api.data.CreatePostRequest;
 import pxl.be.post.api.data.PostResponse;
+import pxl.be.post.api.data.PublicPostResponse;
 import pxl.be.post.domain.Post;
 import pxl.be.post.exception.ResourceNotFoundException;
 import pxl.be.post.repository.PostRepository;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -136,5 +140,68 @@ public class PostServiceIntegrationTests {
         assertEquals("Post 1", postResponses.get(0).getTitle());
         assertEquals("Post 2", postResponses.get(1).getTitle());
     }
+
+    @Test
+    public void testFilterPostsIntegration() {
+        // Assemble
+        Post post1 = Post.builder()
+                .title("Post 1")
+                .content("Content 1")
+                .author("Author 1")
+                .date(new Date())
+                .isConcept(false)
+                .build();
+
+        Post post2 = Post.builder()
+                .title("Post 2")
+                .content("Content 2")
+                .author("Author 2")
+                .date(new Date())
+                .isConcept(false)
+                .build();
+
+        postRepository.save(post1);
+        postRepository.save(post2);
+
+        // Act
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<PublicPostResponse> filteredPosts = postService.filterPosts("Content 1", "Author 1", null, null, pageable);
+
+        // Assert
+        assertEquals(1, filteredPosts.getTotalElements());
+        assertEquals("Post 1", filteredPosts.getContent().get(0).getTitle());
+    }
+
+    @Test
+    public void testGetAllPublicPostsIntegration() {
+        // Assemble
+        Post post1 = Post.builder()
+                .title("Post 1")
+                .content("Content 1")
+                .author("Author 1")
+                .date(new Date())
+                .isConcept(true)
+                .build();
+
+        Post post2 = Post.builder()
+                .title("Post 2")
+                .content("Content 2")
+                .author("Author 2")
+                .date(new Date())
+                .isConcept(false)
+                .build();
+
+        postRepository.save(post1);
+        postRepository.save(post2);
+
+        // Act
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<PublicPostResponse> publicPosts = postService.getAllPublicPosts(pageable);
+
+        // Assert
+        assertEquals(1, publicPosts.getTotalElements());
+        assertEquals("Post 2", publicPosts.getContent().get(0).getTitle());
+    }
+
 
 }
