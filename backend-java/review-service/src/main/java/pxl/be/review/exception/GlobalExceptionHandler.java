@@ -1,13 +1,11 @@
-package pxl.be.post.exception;
+package pxl.be.review.exception;
 
-import jakarta.ws.rs.ForbiddenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,16 +26,4 @@ public class GlobalExceptionHandler {
     public Map<String, String> handleForbiddenExceptions(UnAuthorizedException ex) {
         return Map.of("error", ex.getMessage());
     }
-    @ExceptionHandler(IllegalStateException.class)
-    @ResponseStatus(HttpStatus.EXPECTATION_FAILED)
-    public Map<String, String> handleIllegalExceptions(IllegalStateException ex) {
-        return Map.of("error", ex.getMessage());
-    }
-
-    @ExceptionHandler(IOException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Map<String, String> handleIllegalExceptions(IOException ex) {
-        return Map.of("error", ex.getMessage());
-    }
-
 }

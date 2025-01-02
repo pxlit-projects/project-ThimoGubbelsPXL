@@ -22,6 +22,20 @@ spring:
                 - POST
                 - PUT
               allowedHeaders: '*'
+        - id: review-service
+          uri: lb://review-service
+          predicates:
+            - Path=/review/**
+          filters:
+            - RewritePath=/review/(?<path>.*), /$\{path}
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+              allowedHeaders: '*'
       globals:
         cors-configurations:
           '[/**]':  # Applies to all paths

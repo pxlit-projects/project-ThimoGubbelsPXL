@@ -16,7 +16,8 @@ export class AuthService {
   // Simulate a user database
   private users: { username: string, password: string, role:string }[] = [
     { username: 'user1', password: bcrypt.hashSync('password1', 10), role: 'editor' },
-    { username: 'user2', password: bcrypt.hashSync('password2', 10),  role: 'user' }
+    { username: 'user2', password: bcrypt.hashSync('password2', 10),  role: 'user' },
+    { username: 'user3', password: bcrypt.hashSync('password3', 10),  role: 'editor' }
   ];
 
   // Method to authenticate user

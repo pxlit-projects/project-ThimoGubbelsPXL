@@ -12,6 +12,9 @@ public class PostResponse {
     private String title;
     private String content;
     private boolean isConcept;
+    private boolean isApproved;
+    private boolean isPublished;
+    private Review review;
     private String author;
     private Date date;
 }

@@ -19,6 +19,15 @@ export class PostService {
 
  
 
+   getPost(id: number): Observable<Post> {
+    const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
+    return this.http.get<Post>(`${this.api}post/api/post/${id}`, { headers });
+  }
+  
+  publishPost(postId: Number): Observable<void> {
+    const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
+    return this.http.put<void>(`${this.api}post/api/post/${postId}/publish`, {}, { headers });
+  }
   createPost(post: Post) {
     console.log("posting");
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);

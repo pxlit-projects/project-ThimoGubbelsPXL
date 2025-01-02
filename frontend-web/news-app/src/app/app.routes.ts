@@ -6,6 +6,8 @@ import { LoginComponent } from './core/login/login.component';
 import {EditorPostListComponent} from './core/post/list/editor-post-list/editor-post-list.component';
 import { PostListComponent } from './core/post/list/post-list/post-list.component';
 import { PostDetailComponent } from './core/post/detail/post-detail/post-detail.component';
+import { EditorPostDetailComponent } from './core/post/detail/editor-post-detail/editor-post-detail.component';
+
 
 
 export const routes: Routes = [
@@ -15,6 +17,8 @@ export const routes: Routes = [
     { path: 'posts', component: EditorPostListComponent, canActivate: [AuthGuard] },
     { path: 'publicposts', component: PostListComponent, canActivate: [AuthGuard] },
     { path: 'post/:id', component: PostDetailComponent, canActivate: [AuthGuard] },
+    { path: 'editor-post/:id', component: EditorPostDetailComponent, canActivate: [AuthGuard] },
+
     {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},

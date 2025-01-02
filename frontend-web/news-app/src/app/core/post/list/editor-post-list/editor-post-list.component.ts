@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CreatePostComponent } from '../../forms/create-post/create-post.component';
 import { computed } from '@angular/core';
 import { Post } from '../../../../shared/models/post';
+import { CreateReviewComponent } from '../../review/create-review/create-review.component';
+
 
 @Component({
   selector: 'app-editor-post-list',
@@ -40,6 +42,25 @@ export class EditorPostListComponent implements OnInit {
     dialogRef.componentInstance.postCreated.subscribe(() => {
       dialogRef.close();
       this.getPosts();
+    });
+  }
+  openReviewModal(post: Post): void {
+    if (post.published) {
+      return;
+    }
+    
+    const dialogRef = this.dialog.open(CreateReviewComponent, {
+      width: '500px',
+      data: { 
+        postId: post.id,
+        postAuthor: post.author
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getPosts(); // Refresh the list to show updated status
+      }
     });
   }
 
