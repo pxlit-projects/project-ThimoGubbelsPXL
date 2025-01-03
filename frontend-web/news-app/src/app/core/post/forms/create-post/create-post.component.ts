@@ -54,10 +54,10 @@ export class CreatePostComponent implements OnInit {
           this.postService.updatePost(newPost, this.postId).subscribe({
             next: () => {
               this.router.navigate(['/posts']);
-              this.postService.errorMessage.set(null);
+              this.postService.errorMessage=null;
             },
             error: (err: Error) => {
-              this.postService.errorMessage.set("Error occured");
+              this.postService.errorMessage= "Error occured";
             }
           });
         } else {
@@ -65,10 +65,10 @@ export class CreatePostComponent implements OnInit {
             next: () => {
               this.postForm.reset();
               this.postCreated.emit();
-              this.postService.errorMessage.set(null);
+              this.postService.errorMessage= null;
             },
             error: (err: Error) => {
-              this.postService.errorMessage.set("Error occured");
+              this.postService.errorMessage= "Error occured";
             }
           });
         }

@@ -70,10 +70,10 @@ export class EditorPostListComponent implements OnInit {
       next: (posts: Post[]) => {
         this.postService.posts = posts;
         console.log(posts);
-        this.postService.errorMessage.set(null);
+        this.postService.errorMessage =null;
       },
       error: (err:Error) => {
-        this.postService.errorMessage.set("Error occured");
+        this.postService.errorMessage ="Error occured";
       }
     });
   }

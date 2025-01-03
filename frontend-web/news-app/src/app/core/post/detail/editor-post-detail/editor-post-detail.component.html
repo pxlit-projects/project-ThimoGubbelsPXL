@@ -9,7 +9,9 @@
           <span [class.text-green-600]="post.approved" [class.text-red-600]="!post.approved">
             {{ post.approved ? 'Approved' : 'Pending Approval' }}
           </span>
-          <span *ngIf="post.published" class="text-blue-600"> - Published</span>
+          @if(post.published){
+          <span class="text-blue-600"> - Published</span>
+        }
         </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
@@ -17,16 +19,20 @@
         <p class="mt-4">{{ post.content }}</p>
         
         <!-- Show review details only if not approved and review exists -->
-        <div *ngIf="!post.approved && post.review" class="mt-4 p-4 bg-gray-100 rounded">
+         @if(!post.approved && post.review){
+        <div class="mt-4 p-4 bg-gray-100 rounded">
           <h3 class="font-bold">Review Feedback</h3>
           <p>{{ post.review.content }}</p>
           <p class="text-sm text-gray-600">Reviewed by: {{ post.review.author }}</p>
         </div>
+      }
 
         <!-- Show simple approval message if approved -->
-        <div *ngIf="post.approved" class="mt-4 p-4 bg-green-50 rounded">
+         @if(post.approved){
+        <div class="mt-4 p-4 bg-green-50 rounded">
           <p class="text-green-600">✓ This post has been approved</p>
         </div>
+      }
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" 

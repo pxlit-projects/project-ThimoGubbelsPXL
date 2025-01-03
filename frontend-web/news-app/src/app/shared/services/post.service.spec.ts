@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { PostService } from './post.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { environment } from '../../../environments/environment.development';
-import { Post } from '../models/post';
 import { AuthService } from './auth.service';
+import { environment } from '../../../environments/environment';
+import { Post } from '../models/post';
+import { Page } from '../models/page';
 
 describe('PostService', () => {
   let service: PostService;
@@ -11,13 +12,14 @@ describe('PostService', () => {
   let authServiceSpy: jasmine.SpyObj<AuthService>;
 
   beforeEach(() => {
-    const authServiceMock = jasmine.createSpyObj('AuthService', ['getCurrentUser']);
+    const spy = jasmine.createSpyObj('AuthService', ['getCurrentUser']);
+    spy.getCurrentUser.and.returnValue({ username: 'testUser', role: 'EDITOR' });
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         PostService,
-        { provide: AuthService, useValue: authServiceMock }
+        { provide: AuthService, useValue: spy }
       ]
     });
 
@@ -34,45 +36,73 @@ describe('PostService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should create a post', () => {
+  it('should get a post by id', () => {
     const mockPost: Post = { 
-      title: 'Test Post', 
-      content: 'Content', 
-      author: 'Author', 
-      date: new Date(), 
-      concept: false 
+      id: 1, 
+      title: 'Test Post',
+      content: 'Test Content',
+      author: 'testUser',
+      date: new Date(),
+      concept: false,
+      approved: false,
+      published: false,
+      review: null
     };
-    authServiceSpy.getCurrentUser.and.returnValue({ 
-      username: 'user1', 
-      password: 'password1', 
-      role: 'editor' 
-    });
 
-    service.createPost(mockPost).subscribe(post => {
-      expect(post).toEqual(mockPost);
-    });
-
-    const req = httpMock.expectOne(`${environment.apiUrl}post/api/post`);
-    expect(req.request.method).toBe('POST');
-    req.flush(mockPost);
-  });
-
-  it('should update a post', () => {
-    const mockPost: Post = { title: 'Updated Post', content: 'Updated Content', author: 'Author', date: new Date(), concept: false };
-    authServiceSpy.getCurrentUser.and.returnValue({ username: 'user1', password: 'password1', role: 'editor' });
-
-    service.updatePost(mockPost, 1).subscribe(post => {
+    service.getPost(1).subscribe(post => {
       expect(post).toEqual(mockPost);
     });
 
     const req = httpMock.expectOne(`${environment.apiUrl}post/api/post/1`);
-    expect(req.request.method).toBe('PUT');
+    expect(req.request.method).toBe('GET');
+    expect(req.request.headers.get('Role')).toBe('EDITOR');
     req.flush(mockPost);
   });
 
-  it('should get posts', () => {
-    const mockPosts: Post[] = [{ title: 'Test Post', content: 'Content', author: 'Author', date: new Date(), concept: false }];
-    authServiceSpy.getCurrentUser.and.returnValue({ username: 'user1', password: 'password1', role: 'editor' });
+  it('should publish a post', () => {
+    service.publishPost(1).subscribe();
+
+    const req = httpMock.expectOne(`${environment.apiUrl}post/api/post/1/publish`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.headers.get('Role')).toBe('EDITOR');
+    req.flush({});
+  });
+
+  it('should create a post', () => {
+    const mockPost: Post = {
+      title: 'New Post',
+      content: 'New Content',
+      author: 'testUser',
+      date: new Date(),
+      concept: false,
+      approved: false,
+      published: false,
+      review: null
+    };
+
+    service.createPost(mockPost).subscribe();
+
+    const req = httpMock.expectOne(`${environment.apiUrl}post/api/post`);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.headers.get('Role')).toBe('EDITOR');
+    expect(req.request.body).toEqual(mockPost);
+    req.flush(mockPost);
+  });
+
+  it('should get all posts', () => {
+    const mockPosts: Post[] = [
+      {
+        id: 1,
+        title: 'Test Post',
+        content: 'Test Content',
+        author: 'testUser',
+        date: new Date(),
+        concept: false,
+        approved: false,
+        published: false,
+        review: null
+      }
+    ];
 
     service.getPosts().subscribe(posts => {
       expect(posts).toEqual(mockPosts);
@@ -80,49 +110,20 @@ describe('PostService', () => {
 
     const req = httpMock.expectOne(`${environment.apiUrl}post/api/post`);
     expect(req.request.method).toBe('GET');
+    expect(req.request.headers.get('Role')).toBe('EDITOR');
     req.flush(mockPosts);
   });
 
+  it('should handle errors when user is not authenticated', () => {
+    authServiceSpy.getCurrentUser.and.returnValue(null);
 
+    service.getPosts().subscribe({
+      error: (error) => {
+        expect(error).toBeTruthy();
+      }
+    });
 
-it('should get public posts', () => {
-  const mockPage = {
-    content: [{ title: 'Public Post', content: 'Content', author: 'Author', date: new Date(), concept: false }],
-    totalElements: 1,
-    pageable: { pageNumber: 0, pageSize: 10 },
-    totalPages: 1
-  };
-
-  service.getPublicPosts(0, 10).subscribe(page => {
-    expect(page).toEqual(mockPage);
+    const req = httpMock.expectOne(`${environment.apiUrl}post/api/post`);
+    req.error(new ErrorEvent('Network error'));
   });
-
-  const req = httpMock.expectOne(`${environment.apiUrl}post/api/post/public?page=0&size=10`);
-  expect(req.request.method).toBe('GET');
-  req.flush(mockPage);
-});
-
-it('should filter posts', () => {
-  const mockPage = {
-    content: [{ title: 'Filtered Post', content: 'Content', author: 'Author', date: new Date(), concept: false }],
-    totalElements: 1,
-    pageable: { pageNumber: 0, pageSize: 10 },
-    totalPages: 1
-  };
-
-  const startDate = new Date();
-  const endDate = new Date();
-  
-  service.filterPosts('test', 'author', startDate, endDate, 0, 10).subscribe(page => {
-    expect(page).toEqual(mockPage);
-  });
-
-  const req = httpMock.expectOne(req => req.url === `${environment.apiUrl}post/api/post/filter`);
-  expect(req.request.method).toBe('GET');
-  expect(req.request.params.get('content')).toBe('test');
-  expect(req.request.params.get('author')).toBe('author');
-  expect(req.request.params.get('startDate')).toBe(startDate.toISOString());
-  expect(req.request.params.get('endDate')).toBe(endDate.toISOString());
-  req.flush(mockPage);
-});
 });

@@ -15,7 +15,7 @@ export class PostService {
   http: HttpClient = inject(HttpClient);
   authService: AuthService = inject(AuthService);
    posts :Post[] =[];
-   errorMessage : WritableSignal<string|null> =signal(null);
+   errorMessage :string|null =null;
 
  
 

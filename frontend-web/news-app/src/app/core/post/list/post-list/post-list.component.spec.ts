@@ -1,14 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PostListComponent } from './post-list.component';
 import { PostService } from '../../../../shared/services/post.service';
+import { of, throwError } from 'rxjs';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { of } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { RouterModule } from '@angular/router';
+import { Page } from '../../../../shared/models/page';
+import { Post } from '../../../../shared/models/post';
 
 describe('PostListComponent', () => {
   let component: PostListComponent;
@@ -17,23 +19,21 @@ describe('PostListComponent', () => {
 
   beforeEach(async () => {
     const postServiceMock = jasmine.createSpyObj('PostService', ['filterPosts']);
-    const routerMock = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
       imports: [
         PostListComponent,
         ReactiveFormsModule,
+        CommonModule,
         MatCardModule,
         MatButtonModule,
         MatInputModule,
         MatPaginatorModule,
-        NoopAnimationsModule
+        RouterModule
       ],
       providers: [
         FormBuilder,
-        { provide: PostService, useValue: postServiceMock },
-        { provide: Router, useValue: routerMock },
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => null } } } }
+        { provide: PostService, useValue: postServiceMock }
       ]
     }).compileComponents();
 
@@ -47,8 +47,8 @@ describe('PostListComponent', () => {
   });
 
   it('should load posts on init', () => {
-    const mockPage = {
-      content: [{ id: 1, title: 'Test Post', content: 'Content', author: 'Author', date: new Date(), concept: false }],
+    const mockPage: Page<Post> = {
+      content: [{ id: 1, title: 'Test Post', content: 'Content', author: 'Author', date: new Date(), concept: false, approved: false, published: false, review: null }],
       totalElements: 1,
       pageable: { pageNumber: 0, pageSize: 10 },
       totalPages: 1
@@ -56,45 +56,48 @@ describe('PostListComponent', () => {
     postServiceSpy.filterPosts.and.returnValue(of(mockPage));
 
     component.ngOnInit();
-    fixture.detectChanges();
-
+    expect(postServiceSpy.filterPosts).toHaveBeenCalled();
     expect(component.posts).toEqual(mockPage.content);
-    expect(component.totalPosts).toBe(mockPage.totalElements);
+    expect(component.totalPosts).toEqual(mockPage.totalElements);
   });
 
-  it('should handle page changes', () => {
-    const pageEvent: PageEvent = { pageIndex: 1, pageSize: 10, length: 20 };
-    const mockPage = {
-      content: [{ id: 2, title: 'Test Post 2', content: 'Content 2', author: 'Author', date: new Date(), concept: false }],
-      totalElements: 20,
-      pageable: { pageNumber: 1, pageSize: 10 },
-      totalPages: 2
+  it('should handle error when loading posts', () => {
+    postServiceSpy.filterPosts.and.returnValue(throwError(() => new Error('Error occurred')));
+
+    component.ngOnInit();
+    expect(postServiceSpy.filterPosts).toHaveBeenCalled();
+    expect(component.posts).toEqual([]);
+    expect(component.totalPosts).toEqual(0);
+  });
+
+  it('should update posts on page change', () => {
+    const mockPage: Page<Post> = {
+      content: [{ id: 1, title: 'Test Post', content: 'Content', author: 'Author', date: new Date(), concept: false, approved: false, published: false, review: null }],
+      totalElements: 1,
+      pageable: { pageNumber: 1, pageSize: 5 },
+      totalPages: 1
     };
     postServiceSpy.filterPosts.and.returnValue(of(mockPage));
 
-    component.onPageChange(pageEvent);
-
-    expect(component.pageIndex).toBe(pageEvent.pageIndex);
-    expect(component.pageSize).toBe(pageEvent.pageSize);
+    component.onPageChange({ pageIndex: 1, pageSize: 5, length: 1 });
     expect(postServiceSpy.filterPosts).toHaveBeenCalled();
+    expect(component.posts).toEqual(mockPage.content);
+    expect(component.totalPosts).toEqual(mockPage.totalElements);
   });
 
-  it('should handle search', () => {
-    const mockPage = {
-      content: [{ id: 1, title: 'Test Post', content: 'Content', author: 'Author', date: new Date(), concept: false }],
+  it('should update posts on search', () => {
+    const mockPage: Page<Post> = {
+      content: [{ id: 1, title: 'Test Post', content: 'Content', author: 'Author', date: new Date(), concept: false, approved: false, published: false, review: null }],
       totalElements: 1,
       pageable: { pageNumber: 0, pageSize: 10 },
       totalPages: 1
     };
     postServiceSpy.filterPosts.and.returnValue(of(mockPage));
 
-    component.filterForm.patchValue({
-      content: 'test',
-      author: 'author'
-    });
+    component.filterForm.setValue({ content: 'Test', author: 'Author', startDate: '', endDate: '' });
     component.onSearch();
-
-    expect(component.pageIndex).toBe(0);
     expect(postServiceSpy.filterPosts).toHaveBeenCalled();
+    expect(component.posts).toEqual(mockPage.content);
+    expect(component.totalPosts).toEqual(mockPage.totalElements);
   });
 });
