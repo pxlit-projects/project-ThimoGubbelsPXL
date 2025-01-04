@@ -7,5 +7,5 @@ import lombok.Data;
 @Builder
 public class Review {
     String content;
-    String Author;
+    String author;
 }

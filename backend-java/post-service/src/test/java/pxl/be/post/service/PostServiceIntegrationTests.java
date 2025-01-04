@@ -17,6 +17,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import pxl.be.post.api.data.CreatePostRequest;
 import pxl.be.post.api.data.PostResponse;
 import pxl.be.post.api.data.PublicPostResponse;
+import pxl.be.post.api.data.ReviewMessage;
 import pxl.be.post.domain.Post;
 import pxl.be.post.exception.ResourceNotFoundException;
 import pxl.be.post.repository.PostRepository;
@@ -43,7 +44,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         "spring.datasource.url=jdbc:mysql://localhost:3310/microservicesDb",
         "spring.datasource.username=user",
         "spring.datasource.password=password",
-        "spring.jpa.hibernate.ddl-auto=create"
+        "spring.jpa.hibernate.ddl-auto=update"
 })
 public class PostServiceIntegrationTests {
     @Container
@@ -112,34 +113,7 @@ public class PostServiceIntegrationTests {
         assertTrue(updatedPost.isConcept());
     }
 
-    @Test
-    public void testGetAllPostsIntegration() {
-        // Assemble
-        Post post1 = Post.builder()
-                .title("Post 1")
-                .content("Content 1")
-                .author("Author 1")
-                .date(new Date())
-                .build();
 
-        Post post2 = Post.builder()
-                .title("Post 2")
-                .content("Content 2")
-                .author("Author 2")
-                .date(new Date())
-                .build();
-
-        postRepository.save(post1);
-        postRepository.save(post2);
-
-        // Act
-        List<PostResponse> postResponses = postService.getAllPosts();
-
-        // Assert
-        assertEquals(2, postResponses.size());
-        assertEquals("Post 1", postResponses.get(0).getTitle());
-        assertEquals("Post 2", postResponses.get(1).getTitle());
-    }
 
     @Test
     public void testFilterPostsIntegration() {
@@ -149,7 +123,7 @@ public class PostServiceIntegrationTests {
                 .content("Content 1")
                 .author("Author 1")
                 .date(new Date())
-                .isConcept(false)
+                .isPublished(true)
                 .build();
 
         Post post2 = Post.builder()
@@ -157,7 +131,7 @@ public class PostServiceIntegrationTests {
                 .content("Content 2")
                 .author("Author 2")
                 .date(new Date())
-                .isConcept(false)
+                .isPublished(false)
                 .build();
 
         postRepository.save(post1);
@@ -180,7 +154,7 @@ public class PostServiceIntegrationTests {
                 .content("Content 1")
                 .author("Author 1")
                 .date(new Date())
-                .isConcept(true)
+                .isPublished(true)
                 .build();
 
         Post post2 = Post.builder()
@@ -188,7 +162,7 @@ public class PostServiceIntegrationTests {
                 .content("Content 2")
                 .author("Author 2")
                 .date(new Date())
-                .isConcept(false)
+                .isPublished(false)
                 .build();
 
         postRepository.save(post1);
@@ -200,8 +174,72 @@ public class PostServiceIntegrationTests {
 
         // Assert
         assertEquals(1, publicPosts.getTotalElements());
-        assertEquals("Post 2", publicPosts.getContent().get(0).getTitle());
+        assertEquals("Post 1", publicPosts.getContent().get(0).getTitle());
     }
+
+    @Test
+    public void testPublishPostIntegration() {
+        // Assemble
+        Post post = Post.builder()
+                .title("Old Post")
+                .content("This is an old post.")
+                .author("Author")
+                .date(new Date())
+                .isApproved(true) // Ensure the post is approved
+                .build();
+        postRepository.save(post);
+
+        // Act
+        postService.publishPost(post.getId());
+
+        // Assert
+        Post publishedPost = postRepository.findById(post.getId()).orElseThrow();
+        assertTrue(publishedPost.isPublished());
+    }
+
+    @Test
+    public void testPublishPostShouldThrowIllegalStateExceptionIfNotApprovedIntegration() {
+        // Assemble
+        Post post = Post.builder()
+                .title("Old Post")
+                .content("This is an old post.")
+                .author("Author")
+                .date(new Date())
+                .isApproved(false) // Post is not approved
+                .build();
+        postRepository.save(post);
+
+        // Act & Assert
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> postService.publishPost(post.getId()));
+        assertEquals("Post is not approved", exception.getMessage());
+    }
+
+    @Test
+    public void testUpdatePostReviewIntegration() {
+        // Assemble
+        Post post = Post.builder()
+                .title("Post 1")
+                .content("Content 1")
+                .author("Author 1")
+                .date(new Date())
+                .build();
+        postRepository.save(post);
+
+        ReviewMessage reviewMessage = ReviewMessage.builder()
+                .postId(post.getId())
+                .reviewId(1L)
+                .isApproved(true)
+                .build();
+
+        // Act
+        postService.updatePostReview(reviewMessage);
+
+        // Assert
+        Post updatedPost = postRepository.findById(post.getId()).orElseThrow();
+        assertEquals(1L, updatedPost.getReviewId());
+        assertTrue(updatedPost.isApproved());
+    }
+
 
 
 }

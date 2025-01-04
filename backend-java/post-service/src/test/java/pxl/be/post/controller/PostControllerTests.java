@@ -2,7 +2,9 @@ package pxl.be.post.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import pxl.be.post.api.data.CreatePostRequest;
 import pxl.be.post.api.data.PostResponse;
 import pxl.be.post.api.data.PublicPostResponse;
+import pxl.be.post.api.data.ReviewMessage;
 import pxl.be.post.exception.UnAuthorizedException;
 import pxl.be.post.service.IPostService;
 
@@ -23,6 +26,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -34,6 +38,9 @@ public class PostControllerTests {
 
     @MockBean
     private IPostService postService;
+
+    @Mock
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -59,26 +66,6 @@ public class PostControllerTests {
     }
 
     @Test
-    public void testCreatePostWithInvalidRole() throws Exception {
-        CreatePostRequest createPostRequest = CreatePostRequest.builder()
-                .title("Test Post")
-                .content("This is a test post.")
-                .author("Author")
-                .date(new Date())
-                .isConcept(false) // Ensure isConcept is provided
-                .build();
-
-        String postString = objectMapper.writeValueAsString(createPostRequest);
-        mockMvc.perform(post("/api/post")
-                        .header("Role", "viewer")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(postString))
-                .andExpect(status().isUnauthorized())
-                .andExpect(result -> assertTrue(result.getResolvedException() instanceof UnAuthorizedException))
-                .andExpect(result -> assertEquals("Unauthorized access", result.getResolvedException().getMessage()));
-    }
-
-    @Test
     public void testUpdatePost() throws Exception {
         Long postId = 1L;
         CreatePostRequest createPostRequest = CreatePostRequest.builder()
@@ -98,6 +85,28 @@ public class PostControllerTests {
 
         Mockito.verify(postService).updatePost(postId, createPostRequest);
     }
+
+    @Test
+    public void testCreatePostWithInvalidRole() throws Exception {
+        CreatePostRequest createPostRequest = CreatePostRequest.builder()
+                .title("Test Post")
+                .content("This is a test post.")
+                .author("Author")
+                .date(new Date())
+                .isConcept(false) // Ensure isConcept is provided
+                .build();
+
+        String postString = objectMapper.writeValueAsString(createPostRequest);
+        mockMvc.perform(post("/api/post")
+                        .header("Role", "viewer")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(postString))
+                .andExpect(status().isUnauthorized())
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof UnAuthorizedException))
+                .andExpect(result -> assertEquals("Unauthorized access", result.getResolvedException().getMessage()));
+    }
+
+
 
     @Test
     public void testUpdatePostWithInvalidRole() throws Exception {
@@ -209,4 +218,38 @@ public class PostControllerTests {
 
         Mockito.verify(postService).filterPosts(Mockito.anyString(), Mockito.anyString(), Mockito.any(), Mockito.any(), Mockito.any(Pageable.class));
     }
+
+    @Test
+    public void testPublishPost() throws Exception {
+        Long postId = 1L;
+
+        mockMvc.perform(put("/api/post/{postId}/publish", postId)
+                        .header("Role", "editor")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        Mockito.verify(postService).publishPost(postId);
+    }
+
+    @Test
+    public void testPublishPostWithInvalidRole() throws Exception {
+        Long postId = 1L;
+
+        mockMvc.perform(put("/api/post/{postId}/publish", postId)
+                        .header("Role", "viewer")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnauthorized())
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof UnAuthorizedException))
+                .andExpect(result -> assertEquals("Unauthorized access", result.getResolvedException().getMessage()));
+    }
+
+
+    @Test
+    public void testStreamNotifications() throws Exception {
+        mockMvc.perform(get("/api/post/notifications")
+                        .accept(MediaType.TEXT_EVENT_STREAM))
+                .andExpect(status().isOk())
+                ;
+    }
+
 }
