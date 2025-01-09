@@ -8,7 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class QueueConfiguration {
     @Bean
-    public Queue myQueue() {
+    public Queue reviewQueue() {
         return new Queue("reviewAdded", false);
+    }
+
+    @Bean
+    public Queue commentQueue() {
+        return new Queue("comment", false);
     }
 }

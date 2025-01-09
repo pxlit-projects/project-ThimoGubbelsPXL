@@ -5,21 +5,19 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.annotation.RabbitListeners;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pxl.be.post.api.data.*;
-import pxl.be.post.client.NotificationClient;
+import pxl.be.post.client.CommentClient;
 import pxl.be.post.client.ReviewClient;
-import pxl.be.post.controller.PostController;
-import pxl.be.post.domain.Employee;
 import pxl.be.post.domain.Post;
 import pxl.be.post.exception.ResourceNotFoundException;
 import pxl.be.post.repository.PostRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +27,7 @@ import java.util.stream.Collectors;
 public class PostService implements IPostService {
     private final PostRepository postRepository;
     private final ReviewClient reviewClient;
+    private final CommentClient commentClient;
     private static final Logger log = LoggerFactory.getLogger(PostService.class);
 
     public void createPost(CreatePostRequest createPostRequest) {
@@ -113,12 +112,23 @@ public class PostService implements IPostService {
     }
 
     private PublicPostResponse mapToPublicPostResponse(Post post) {
-        return PublicPostResponse.builder()
+        PublicPostResponse response =  PublicPostResponse.builder()
                 .id(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .author(post.getAuthor())
                 .date(post.getDate()).build();
+        if(post.getCommentIds() != null){
+            try{
+                log.info("Getting comments for post with id: " + post.getId());
+                ArrayList<Comment> comments = post.getCommentIds().stream().map(commentClient::getComment).collect(Collectors.toCollection(ArrayList::new));
+                response.setComments(comments);
+                log.info("Comments found: " + response.getComments());
+            }catch (FeignException e){
+                log.error("Comments not found for post with id using Open Feign: " + post.getId());
+            }
+        }
+        return response;
     }
 
 @Transactional
@@ -128,6 +138,20 @@ public class PostService implements IPostService {
         post.setIsApproved(reviewMessage.isApproved());
         post.setReviewId(reviewMessage.getReviewId());
         log.info("Post updated with reviewId: " + post);
+        postRepository.save(post);
+    }
+    @RabbitListener(queues = "comment")
+    @Transactional
+    public void updateCommentsList(CommentMessage commentMessage) {
+        log.info("Updating post with commentId: " + commentMessage.getCommentId());
+        Post post = postRepository.findById(commentMessage.getPostId()).orElseThrow(() -> new ResourceNotFoundException("Post with Id:" + commentMessage.getPostId() + "not found"));
+        if(commentMessage.isAdded()){
+            post.addComment(commentMessage.getCommentId());
+        }
+       else{
+            post.removeComment(commentMessage.getCommentId());
+        }
+        log.info("Post updated with commentId: " + post);
         postRepository.save(post);
     }
 

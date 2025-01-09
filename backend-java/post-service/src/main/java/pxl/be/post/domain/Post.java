@@ -87,5 +87,12 @@ public class Post {
 
     }
 
+    public void addComment(Long commentId) {
+        commentIds.add(commentId);
+    }
+    public void removeComment(Long commentId) {
+        commentIds.remove(commentId);
+    }
+
 
 }

@@ -1,4 +1,6 @@
-package pxl.be.review.configuration;
+package pxl.be.comment.configuration;
+
+
 
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
