@@ -36,6 +36,20 @@ spring:
                 - POST
                 - PUT
               allowedHeaders: '*'
+        - id: comment-service
+          uri: lb://comment-service
+          predicates:
+            - Path=/comment/**
+          filters:
+            - RewritePath=/comment/(?<path>.*), /$\{path}
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+              allowedHeaders: '*'
       globals:
         cors-configurations:
           '[/**]':  # Applies to all paths
