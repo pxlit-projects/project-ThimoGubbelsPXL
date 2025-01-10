@@ -64,7 +64,7 @@ public class PostController {
 
     }
 
-    @PutMapping("/{postId}/publish")
+    @PatchMapping("/{postId}/publish")
     @ResponseStatus(HttpStatus.OK)
     public void publishPost(@RequestHeader(value = "Role", required = true) String headerValue, @PathVariable Long postId){
         if(!headerValue.equals("editor")){
@@ -98,20 +98,7 @@ public class PostController {
         return new ResponseEntity<>(postService.getAllPublicPosts(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/filter")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Page<PublicPostResponse>> filterPosts(
-            @RequestParam(required = false) String content,
-            @RequestParam(required = false) String author,
-            @RequestParam(required = false) Date startDate,
-            @RequestParam(required = false) Date endDate,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        log.info("Filtering posts");
-        log.debug("Filtering posts with content: {}, author: {}, startDate: {}, endDate: {}", content, author, startDate, endDate);
-        Pageable pageable = PageRequest.of(page, size);
-        return new ResponseEntity<>(postService.filterPosts(content, author, startDate, endDate, pageable), HttpStatus.OK);
-    }
+
 
 
     private final CopyOnWriteArrayList<FluxSink<Object>> subscribers = new CopyOnWriteArrayList<>();

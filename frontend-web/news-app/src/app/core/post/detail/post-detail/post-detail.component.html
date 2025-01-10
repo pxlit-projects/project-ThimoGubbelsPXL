@@ -7,6 +7,25 @@
       <mat-card-content>
         <p>Date: {{ post.date | date: 'short' }}</p>
         <p>{{ post.content }}</p>
+        
+        <!-- Comments section -->
+        <div class="mt-4">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold">Comments</h3>
+            <button mat-raised-button color="primary" (click)="openCreateCommentDialog()">
+              Add Comment
+            </button>
+          </div>
+          <div class="space-y-4">
+            @for(comment of post.comments; track comment.id) {
+              <app-post-comment
+                [comment]="comment"
+                (commentUpdated)="onCommentUpdated($event)"
+                (commentDeleted)="onCommentDeleted($event)">
+              </app-post-comment>
+            }
+          </div>
+        </div>
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" [routerLink]="['/publicposts']">Back to Posts</button>      </mat-card-actions>

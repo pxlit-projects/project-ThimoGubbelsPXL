@@ -42,13 +42,13 @@ public class CommentController {
 
     }
 
-    @GetMapping(value ="/{reviewId}", produces = MediaType.APPLICATION_JSON_VALUE )
+    @GetMapping(value ="/{commentId}", produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<CommentResponse> getComment(@PathVariable Long commentId){
        log.info("Receiving comment request for comment with id: " + commentId);
         return new ResponseEntity<>(commentService.getComment(commentId), HttpStatus.OK);
     }
 
-    @PutMapping("/{commentId}")
+    @PatchMapping("/{commentId}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<CommentResponse> updateComment(@RequestHeader(value = "Role", required = true) String headerValue, @PathVariable Long commentId, @Valid @RequestBody UpdateCommentRequest updateCommentRequest){
         if(!headerValue.equals("user")){
@@ -62,16 +62,17 @@ public class CommentController {
 
     }
 
-    @PutMapping("/{commentId}/delete")
+    @DeleteMapping ("/{commentId}/delete")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteComment(@RequestHeader(value = "Role", required = true) String headerValue, @PathVariable Long commentId, @Valid @RequestBody DeleteCommentRequest deleteCommentRequest){
-        if(!headerValue.equals("user")){
-            log.info("User with role " + headerValue + " tried to delete a comment");
+    public void deleteComment(@RequestHeader(value = "Role", required = true) String headerRole,
+                              @RequestHeader(value = "Author", required = true) String headerAuthor, @PathVariable Long commentId){
+        if(!headerRole.equals("user")){
+            log.info("User with role " + headerRole + " tried to delete a comment");
             throw new UnAuthorizedException("Unauthorized access");
         }
 
         log.info("Received delete comment request");
-        commentService.deleteComment(commentId, deleteCommentRequest);
+        commentService.deleteComment(commentId, headerAuthor);
 
     }
 

@@ -7,5 +7,5 @@ public interface ICommentService {
     CommentResponse createComment(CreateCommentRequest createCommentRequest);
     CommentResponse getComment(Long id);
     CommentResponse updateComment(Long commentId, UpdateCommentRequest updateCommentRequest);
-    void deleteComment(Long commentId, DeleteCommentRequest deleteCommentRequest);
+    void deleteComment(Long commentId, String author);
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PostService } from '../../../../shared/services/post.service';
 import { Post } from '../../../../shared/models/post';
@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -25,7 +26,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
-export class PostListComponent implements OnInit {
+export class PostListComponent implements OnInit, OnDestroy {
   postService: PostService = inject(PostService);
   fb: FormBuilder = inject(FormBuilder);
   filterForm: FormGroup = this.fb.group({
@@ -38,6 +39,7 @@ export class PostListComponent implements OnInit {
   totalPosts: number = 0;
   pageSize: number = 10;
   pageIndex: number = 0;
+  subs: Subscription[] = [];
 
   ngOnInit(): void {
     this.getPosts();
@@ -45,15 +47,16 @@ export class PostListComponent implements OnInit {
 
   getPosts(): void {
     const { content, author, startDate, endDate } = this.filterForm.value;
-    this.postService.filterPosts(content, author, startDate, endDate, this.pageIndex, this.pageSize).subscribe({
+    this.subs.push(this.postService.filterPosts(content, author, startDate, endDate, this.pageIndex, this.pageSize).subscribe({
       next: (page) => {
-        this.posts = page.content;
+        this.postService.posts = page.content;
         this.totalPosts = page.totalElements;
       },
       error: (err) => {
         console.error('Error fetching posts', err);
       }
-    });
+    }));
+   
   }
 
   onPageChange(event: PageEvent): void {
@@ -65,5 +68,11 @@ export class PostListComponent implements OnInit {
   onSearch(): void {
     this.pageIndex = 0;
     this.getPosts();
+  }
+
+  ngOnDestroy(): void {
+    if(this.subs){
+      this.subs.forEach((sub: Subscription) => sub.unsubscribe());
+    }
   }
 }

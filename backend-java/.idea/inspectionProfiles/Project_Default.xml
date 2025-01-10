@@ -5,6 +5,7 @@
       <option name="customHeaders">
         <set>
           <option value="Role" />
+          <option value="Author" />
         </set>
       </option>
     </inspection_tool>

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Signal } from '@angular/core';
+import { Component, inject, OnInit, Signal, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PostService } from '../../../../shared/services/post.service';
@@ -10,7 +10,7 @@ import { CreatePostComponent } from '../../forms/create-post/create-post.compone
 import { computed } from '@angular/core';
 import { Post } from '../../../../shared/models/post';
 import { CreateReviewComponent } from '../../review/create-review/create-review.component';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-editor-post-list',
@@ -21,10 +21,11 @@ import { CreateReviewComponent } from '../../review/create-review/create-review.
   templateUrl: './editor-post-list.component.html',
   styleUrls: ['./editor-post-list.component.css']
 })
-export class EditorPostListComponent implements OnInit {
+export class EditorPostListComponent implements OnInit, OnDestroy {
   postService: PostService = inject(PostService);
   dialog: MatDialog = inject(MatDialog);
   errorMessage: string | null = null;
+  subs: Subscription[] = [];
 
   ngOnInit(): void {
     this.getPosts();
@@ -70,11 +71,14 @@ export class EditorPostListComponent implements OnInit {
       next: (posts: Post[]) => {
         this.postService.posts = posts;
         console.log(posts);
-        this.postService.errorMessage =null;
       },
-      error: (err:Error) => {
-        this.postService.errorMessage ="Error occured";
-      }
+     
     });
+  }
+
+  ngOnDestroy(): void {
+    if(this.subs){
+      this.subs.forEach((sub: Subscription) => sub.unsubscribe());
+    }
   }
 }

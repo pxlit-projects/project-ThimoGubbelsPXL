@@ -42,13 +42,23 @@ public class PostService implements IPostService {
 
     public void updatePost(Long postId, CreatePostRequest createPostRequest) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException("Post with Id:" + postId + "not found"));
+        Long reviewId = post.getReviewId();
         post.setTitle(createPostRequest.getTitle());
         post.setContent(createPostRequest.getContent());
         post.setConcept(createPostRequest.getIsConcept());
 
 
-        log.debug("Updating post with id: " + postId);
+        log.debug("Updating and saving post with id: " + postId);
         postRepository.save(post);
+        if(reviewId != null) {
+            try {
+                log.info("Sending review microservice a request to delete associated review with id: " + reviewId);
+                reviewClient.deleteReview(reviewId);
+                log.info("Review deleted");
+            } catch (FeignException e) {
+                log.error("Review with id: " + reviewId + " not deleted");
+            }
+        }
     }
 @Transactional
     public void publishPost(Long postId) {
@@ -75,17 +85,7 @@ public class PostService implements IPostService {
         return new PageImpl<>(postResponses, pageable, posts.getTotalElements());
     }
 
-    public Page<PublicPostResponse> filterPosts(String content, String author, Date startDate, Date endDate, Pageable pageable) {
-        List<Post> posts = postRepository.findAll();
-        List<PublicPostResponse> filteredPosts = posts.stream()
-                .filter(post -> (content == null || post.getContent().contains(content)) &&
-                        (author == null || post.getAuthor().contains(author)) &&
-                        (startDate == null || !post.getDate().before(startDate)) &&
-                        (endDate == null || !post.getDate().after(endDate)) && post.isPublished())
-                .map(this::mapToPublicPostResponse)
-                .collect(Collectors.toList());
-        return new PageImpl<>(filteredPosts, pageable, filteredPosts.size());
-    }
+
 
     private PostResponse mapToPostResponse(Post post) {
         PostResponse response = PostResponse.builder()
@@ -118,7 +118,7 @@ public class PostService implements IPostService {
                 .content(post.getContent())
                 .author(post.getAuthor())
                 .date(post.getDate()).build();
-        if(post.getCommentIds() != null){
+        if(!post.getCommentIds().isEmpty()){
             try{
                 log.info("Getting comments for post with id: " + post.getId());
                 ArrayList<Comment> comments = post.getCommentIds().stream().map(commentClient::getComment).collect(Collectors.toCollection(ArrayList::new));

@@ -1,0 +1,24 @@
+<!-- create-comment.component.html -->
+<h2 mat-dialog-title>Add Comment</h2>
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <mat-form-field class="w-full">
+      <mat-label>Your Comment</mat-label>
+      <textarea 
+        matInput 
+        formControlName="content" 
+        rows="4"
+        placeholder="Write your comment here...">
+      </textarea>
+      <mat-error *ngIf="commentForm.get('content')?.invalid && commentForm.get('content')?.touched">
+        Comment content is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="flex justify-end gap-2">
+    <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="commentForm.invalid">
+      Submit Comment
+    </button>
+  </div>
+</form>

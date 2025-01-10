@@ -39,6 +39,8 @@ public class CommentService implements ICommentService {
         log.info("Getting comment with id: " + id);
         Comment comment = commentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Comment with Id:" + id + "not found"));
         return CommentResponse.builder()
+                .id(comment.getId())
+                .postId(comment.getPostId())
                 .content(comment.getContent())
                 .author(comment.getAuthor())
                 .date(comment.getDate()).build();
@@ -55,12 +57,12 @@ public class CommentService implements ICommentService {
                 .date(comment.getDate()).build();
     }
 
-    public void deleteComment(Long commentId, DeleteCommentRequest deleteCommentRequest) {
+    public void deleteComment(Long commentId, String author) {
 
         log.info("Deleting comment with id: " + commentId);
         Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new ResourceNotFoundException("Comment with Id:" + commentId + "not found"));
-        if (!comment.getAuthor().equals(deleteCommentRequest.getAuthor())) {
-            throw new UnAuthorizedException("Author of the comment is not the same as the author of the delete request");
+        if (!comment.getAuthor().equals(author)) {
+            throw new UnAuthorizedException("Author of the comment: " + comment.getAuthor()+  " is not the same as the author of the delete request: " + author);
         }
 
         commentRepository.delete(comment);

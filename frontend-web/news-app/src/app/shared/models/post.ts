@@ -1,6 +1,7 @@
 import { Review } from './review';
+import { Comment } from './comment';
 export class Post {
-    id?: Number;
+    id: Number;
     title: string;
     content: string;
     author: string;
@@ -9,8 +10,9 @@ export class Post {
     approved: boolean;
     published: boolean;
     review: Review | null = null;
+    comments: Comment[] = [];
   
-    constructor(title: string, content: string, author: string, date: Date, concept: boolean, approved: boolean, published: boolean, review: Review) {
+    constructor(id:Number,title: string, content: string, author: string, date: Date, concept: boolean, approved: boolean, published: boolean, review: Review, comments: Comment[]) {
       this.title = title;
       this.content = content;
       this.author = author;
@@ -19,5 +21,7 @@ export class Post {
       this.approved = approved;
       this.published = published;
       this.review = review;
+      this.comments = comments;
+      this.id = id;
     }
   }

@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReviewService } from '../../../../shared/services/review.service';
 import { AuthService } from '../../../../shared/services/auth.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-create-review',
   standalone: true,
@@ -23,10 +24,11 @@ import { AuthService } from '../../../../shared/services/auth.service';
   templateUrl: './create-review.component.html',
   styleUrl: './create-review.component.css'
 })
-export class CreateReviewComponent {
+export class CreateReviewComponent implements OnDestroy {
   reviewForm: FormGroup;
   reviewService: ReviewService = inject(ReviewService);
   authService: AuthService = inject(AuthService);
+  subs: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -63,14 +65,20 @@ export class CreateReviewComponent {
         approved: this.reviewForm.value.approved
       };
 
-      this.reviewService.createReview(review).subscribe({
+      this.subs.push(this.reviewService.createReview(review).subscribe({
         next: () => {
           this.dialogRef.close(true);
         },
         error: (error) => {
           console.error('Error creating review:', error);
         }
-      });
+      }));
+    }
+  }
+
+  ngOnDestroy(): void {
+    if(this.subs){
+      this.subs.forEach((sub: Subscription) => sub.unsubscribe());
     }
   }
 }

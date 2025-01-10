@@ -8,6 +8,8 @@ import java.util.Date;
 @Data
 @Builder
 public class CommentResponse {
+    private Long id;
+    private Long postId;
     private String author;
     private String content;
     private Date date;

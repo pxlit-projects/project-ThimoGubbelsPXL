@@ -9,4 +9,7 @@ import pxl.be.post.api.data.Review;
 public interface ReviewClient {
     @GetMapping(value="/api/review/{id}",  produces = MediaType.APPLICATION_JSON_VALUE )
     Review getReview(@PathVariable Long id);
+
+    @DeleteMapping(value="/api/review/{reviewId}")
+    void deleteReview(@PathVariable Long reviewId);
 }

@@ -16,6 +16,6 @@ public interface IPostService {
     void publishPost(Long postId);
     List<PostResponse> getAllPosts();
     Page<PublicPostResponse> getAllPublicPosts(Pageable pageable);
-    Page<PublicPostResponse> filterPosts(String content, String author, Date startDate, Date endDate, Pageable pageable);
+
     void updatePostReview(ReviewMessage reviewMessage);
 }

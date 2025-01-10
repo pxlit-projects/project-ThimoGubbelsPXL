@@ -1,0 +1,32 @@
+<mat-card class="mb-4">
+    <mat-card-content>
+      @if(!isEditing) {
+        <p>{{ comment.content }}</p>
+      } @else {
+        <textarea 
+          [(ngModel)]="editedContent" 
+          class="w-full p-2 border rounded"
+          rows="3">
+        </textarea>
+      }
+      <div class="text-sm text-gray-600 mt-2">
+        By {{ comment.author }} on {{ comment.date | date:'short' }}
+      </div>
+    </mat-card-content>
+    
+    @if(canModify) {
+      <mat-card-actions align="end">
+        @if(!isEditing) {
+          <button mat-button color="primary" (click)="startEdit()">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-button color="warn" (click)="deleteComment()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        } @else {
+          <button mat-button (click)="cancelEdit()">Cancel</button>
+          <button mat-button color="primary" (click)="saveEdit()">Save</button>
+        }
+      </mat-card-actions>
+    }
+  </mat-card>

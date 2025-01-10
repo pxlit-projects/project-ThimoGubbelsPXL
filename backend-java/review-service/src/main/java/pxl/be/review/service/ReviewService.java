@@ -45,4 +45,9 @@ public class ReviewService implements IReviewService{
                 .content(review.getContent())
                 .author(review.getAuthor()).build();
     }
+
+    public void deleteReview(Long id){
+        log.info("Deleting review with id: " + id);
+        reviewRepository.deleteById(id);
+    }
 }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface IReviewService {
     ReviewResponse getReview(Long id);
     void createReview(CreateReviewRequest reviewRequest);
+    void deleteReview(Long id);
 }

@@ -194,36 +194,13 @@ public class PostControllerTests {
         Mockito.verify(postService).getAllPublicPosts(Mockito.any(Pageable.class));
     }
 
-    @Test
-    public void testFilterPosts() throws Exception {
-        PublicPostResponse postResponse1 = PublicPostResponse.builder()
-                .id(1L)
-                .title("Post 1")
-                .content("Content 1")
-                .author("Author 1")
-                .date(new Date())
-                .build();
 
-        List<PublicPostResponse> postResponses = List.of(postResponse1);
-        Page<PublicPostResponse> page = new PageImpl<>(postResponses, PageRequest.of(0, 10), postResponses.size());
-        Mockito.when(postService.filterPosts(Mockito.anyString(), Mockito.anyString(), Mockito.any(), Mockito.any(), Mockito.any(Pageable.class))).thenReturn(page);
-
-        mockMvc.perform(get("/api/post/filter")
-                        .param("content", "Content 1")
-                        .param("author", "Author 1")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content.length()").value(1))
-                .andExpect(jsonPath("$.content[0].title").value("Post 1"));
-
-        Mockito.verify(postService).filterPosts(Mockito.anyString(), Mockito.anyString(), Mockito.any(), Mockito.any(), Mockito.any(Pageable.class));
-    }
 
     @Test
     public void testPublishPost() throws Exception {
         Long postId = 1L;
 
-        mockMvc.perform(put("/api/post/{postId}/publish", postId)
+        mockMvc.perform(patch("/api/post/{postId}/publish", postId)
                         .header("Role", "editor")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

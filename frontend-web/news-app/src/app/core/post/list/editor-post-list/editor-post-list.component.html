@@ -10,7 +10,18 @@
       </mat-card-header>
 
       <mat-card-content>
-        <p>Status: {{ post.concept ? 'Concept' : 'Published' }}</p>
+        <p>Status: {{ post.published ? 'Concept' : 'Published' }}</p>
+        Review <section></section>tatus: 
+        
+          @if(post.review){
+            <span [class.text-green-600]="post.approved" [class.text-red-600]="!post.approved">
+              {{ post.approved ? 'Approved' : 'Changes Requested' }}
+            </span>
+          }@else {
+            <span class="text-blue-500"> - Pending Review</span>
+          }
+          
+        
         <p>Date: {{ post.date | date: 'short' }}</p> <!-- Display the date in a readable format -->
       </mat-card-content>
 
