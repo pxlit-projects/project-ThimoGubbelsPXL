@@ -1,9 +1,10 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-
-    <property name="LOG_PATH" value="logs/"/>
+    <springProperty name="appName" source="spring.application.name"/>
+    <property name="LOG_PATH" value="post-service/logs/"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <immediateFlush>true</immediateFlush>
         <encoder>
             <pattern>[CONSOLE LOG] %d{yyyy-MM-dd'T'HH:mm:ss.SSSZZ} %-5level %-12X{process} %-30([%thread]) %-29logger - %m%n</pattern>
         </encoder>
@@ -12,9 +13,10 @@
     <appender name="APP_LOGGER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/app.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/app.%d{yyyy-MM-dd_HH-mm}.log</fileNamePattern>
             <maxHistory>15</maxHistory>
         </rollingPolicy>
+        <immediateFlush>true</immediateFlush>
         <encoder>
             <pattern>[CUSTOM LOG] %d{yyyy-MM-dd'T'HH:mm:ss.SSSZZ} %-5level %-12X{process} %-30([%thread]) %-29logger - %m%n</pattern>
         </encoder>
