@@ -5,45 +5,30 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.context.TestPropertySource;
-import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import pxl.be.post.api.data.*;
+import pxl.be.post.client.CommentClient;
 import pxl.be.post.client.ReviewClient;
 import pxl.be.post.domain.Post;
 import pxl.be.post.exception.ResourceNotFoundException;
 import pxl.be.post.repository.PostRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.when;
-
-
 
 public class PostServiceTests {
 
-
-
     @InjectMocks
     private PostService postService;
-
-
 
     @Mock
     private PostRepository mockPostRepository;
@@ -51,17 +36,13 @@ public class PostServiceTests {
     @Mock
     private ReviewClient mockReviewClient;
 
-
+    @Mock
+    private CommentClient mockCommentClient;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-
     }
-
-
-
-
 
     @Test
     public void testCreatePostShouldInvokeRepositorySave() {
@@ -72,20 +53,13 @@ public class PostServiceTests {
                 .date(new Date())
                 .build();
 
-        Post post = Post.builder()
-                .title(createPostRequest.getTitle())
-                .content(createPostRequest.getContent())
-                .author(createPostRequest.getAuthor())
-                .date(createPostRequest.getDate())
-                .build();
-
         postService.createPost(createPostRequest);
 
         verify(mockPostRepository).save(any(Post.class));
     }
 
     @Test
-    public void testUpdatePostShouldInvokeRepositorySave() {
+    public void testUpdatePostShouldInvokeRepositorySaveAndReviewClientDelete() {
         Long postId = 1L;
         CreatePostRequest createPostRequest = CreatePostRequest.builder()
                 .title("Updated Post")
@@ -101,6 +75,7 @@ public class PostServiceTests {
                 .content("This is an old post.")
                 .author("Author")
                 .date(new Date())
+                .reviewId(1L)
                 .build();
 
         when(mockPostRepository.findById(postId)).thenReturn(Optional.of(existingPost));
@@ -111,6 +86,7 @@ public class PostServiceTests {
         assertEquals("This is an updated post.", existingPost.getContent());
         assertTrue(existingPost.isConcept());
         verify(mockPostRepository).save(existingPost);
+        verify(mockReviewClient).deleteReview(1L);
     }
 
     @Test
@@ -129,60 +105,37 @@ public class PostServiceTests {
         assertThrows(ResourceNotFoundException.class, () -> postService.updatePost(postId, createPostRequest));
     }
 
-    @Test
-    public void testGetAllPostsShouldReturnPostResponses() {
-        Post post1 = Post.builder()
-                .id(1L)
-                .title("Post 1")
-                .content("Content 1")
-                .author("Author 1")
-                .date(new Date())
-                .build();
 
-        Post post2 = Post.builder()
-                .id(2L)
-                .title("Post 2")
-                .content("Content 2")
-                .author("Author 2")
-                .date(new Date())
-                .build();
 
-        when(mockPostRepository.findAll()).thenReturn(List.of(post1, post2));
-
-        List<PostResponse> postResponses = postService.getAllPosts();
-
-        assertEquals(2, postResponses.size());
-        assertEquals("Post 1", postResponses.get(0).getTitle());
-        assertEquals("Post 2", postResponses.get(1).getTitle());
-    }
 
     @Test
-    public void testFilterPostsShouldReturnFilteredPosts() {
-        Post post1 = Post.builder()
+    public void testGetAllPublicPostsShouldInvokeCommentClient() {
+        Post post = Post.builder()
                 .id(1L)
                 .title("Post 1")
                 .content("Content 1")
                 .author("Author 1")
                 .date(new Date())
                 .isPublished(true)
+                .commentIds(List.of(1L))
                 .build();
 
-        Post post2 = Post.builder()
-                .id(2L)
-                .title("Post 2")
-                .content("Content 2")
-                .author("Author 2")
-                .date(new Date())
-                .isPublished(false)
+        Comment comment = Comment.builder()
+                .id(1L)
+                .content("Comment Content")
+                .author("Comment Author")
                 .build();
 
-        when(mockPostRepository.findAll()).thenReturn(List.of(post1, post2));
+        when(mockPostRepository.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(List.of(post)));
+        when(mockCommentClient.getComment(1L)).thenReturn(comment);
 
         Pageable pageable = PageRequest.of(0, 10);
-        Page<PublicPostResponse> filteredPosts = postService.filterPosts("Content 1", "Author 1", null, null, pageable);
+        Page<PublicPostResponse> publicPosts = postService.getAllPublicPosts(pageable);
 
-        assertEquals(1, filteredPosts.getTotalElements());
-        assertEquals("Post 1", filteredPosts.getContent().get(0).getTitle());
+        assertEquals(1, publicPosts.getTotalElements());
+        assertEquals("Post 1", publicPosts.getContent().get(0).getTitle());
+        assertEquals("Comment Content", publicPosts.getContent().get(0).getComments().get(0).getContent());
+        verify(mockCommentClient).getComment(1L);
     }
 
     @Test
@@ -194,6 +147,7 @@ public class PostServiceTests {
                 .author("Author 1")
                 .date(new Date())
                 .isPublished(true)
+                .commentIds(new ArrayList<>())
                 .build();
 
         Post post2 = Post.builder()
@@ -203,6 +157,7 @@ public class PostServiceTests {
                 .author("Author 2")
                 .date(new Date())
                 .isPublished(false)
+                .commentIds(new ArrayList<>())
                 .build();
 
         when(mockPostRepository.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(List.of(post1, post2)));
@@ -252,11 +207,68 @@ public class PostServiceTests {
         assertThrows(ResourceNotFoundException.class, () -> postService.updatePostReview(reviewMessage));
     }
 
+    @Test
+    public void testUpdateCommentsListShouldAddComment() {
+        CommentMessage commentMessage = CommentMessage.builder()
+                .postId(1L)
+                .commentId(1L)
+                .isAdded(true)
+                .build();
 
+        Post existingPost = Post.builder()
+                .id(1L)
+                .title("Post 1")
+                .content("Content 1")
+                .author("Author 1")
+                .date(new Date())
+                .commentIds(new ArrayList<>())
+                .build();
 
+        when(mockPostRepository.findById(1L)).thenReturn(Optional.of(existingPost));
 
+        postService.updateCommentsList(commentMessage);
 
+        assertTrue(existingPost.getCommentIds().contains(1L));
+        verify(mockPostRepository).save(existingPost);
 
+    }
 
+    @Test
+    public void testUpdateCommentsListShouldRemoveComment() {
+        CommentMessage commentMessage = CommentMessage.builder()
+                .postId(1L)
+                .commentId(1L)
+                .isAdded(false)
+                .build();
 
+        Post existingPost = Post.builder()
+                .id(1L)
+                .title("Post 1")
+                .content("Content 1")
+                .author("Author 1")
+                .date(new Date())
+                .commentIds(new ArrayList<>(List.of(1L)))
+                .build();
+
+        when(mockPostRepository.findById(1L)).thenReturn(Optional.of(existingPost));
+
+        postService.updateCommentsList(commentMessage);
+
+        assertFalse(existingPost.getCommentIds().contains(1L));
+        verify(mockPostRepository).save(existingPost);
+
+    }
+
+    @Test
+    public void testUpdateCommentsListShouldThrowResourceNotFoundException() {
+        CommentMessage commentMessage = CommentMessage.builder()
+                .postId(1L)
+                .commentId(1L)
+                .isAdded(true)
+                .build();
+
+        when(mockPostRepository.findById(1L)).thenReturn(Optional.empty());
+
+        assertThrows(ResourceNotFoundException.class, () -> postService.updateCommentsList(commentMessage));
+    }
 }

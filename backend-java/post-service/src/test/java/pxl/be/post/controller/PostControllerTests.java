@@ -52,7 +52,7 @@ public class PostControllerTests {
                 .content("This is a test post.")
                 .author("Author")
                 .date(new Date())
-                .isConcept(false) // Ensure isConcept is provided
+                .isConcept(false)
                 .build();
 
         String postString = objectMapper.writeValueAsString(createPostRequest);
@@ -93,7 +93,7 @@ public class PostControllerTests {
                 .content("This is a test post.")
                 .author("Author")
                 .date(new Date())
-                .isConcept(false) // Ensure isConcept is provided
+                .isConcept(false)
                 .build();
 
         String postString = objectMapper.writeValueAsString(createPostRequest);
@@ -105,8 +105,6 @@ public class PostControllerTests {
                 .andExpect(result -> assertTrue(result.getResolvedException() instanceof UnAuthorizedException))
                 .andExpect(result -> assertEquals("Unauthorized access", result.getResolvedException().getMessage()));
     }
-
-
 
     @Test
     public void testUpdatePostWithInvalidRole() throws Exception {
@@ -194,8 +192,6 @@ public class PostControllerTests {
         Mockito.verify(postService).getAllPublicPosts(Mockito.any(Pageable.class));
     }
 
-
-
     @Test
     public void testPublishPost() throws Exception {
         Long postId = 1L;
@@ -212,7 +208,7 @@ public class PostControllerTests {
     public void testPublishPostWithInvalidRole() throws Exception {
         Long postId = 1L;
 
-        mockMvc.perform(put("/api/post/{postId}/publish", postId)
+        mockMvc.perform(patch("/api/post/{postId}/publish", postId)
                         .header("Role", "viewer")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnauthorized())
@@ -220,13 +216,10 @@ public class PostControllerTests {
                 .andExpect(result -> assertEquals("Unauthorized access", result.getResolvedException().getMessage()));
     }
 
-
     @Test
     public void testStreamNotifications() throws Exception {
         mockMvc.perform(get("/api/post/notifications")
                         .accept(MediaType.TEXT_EVENT_STREAM))
-                .andExpect(status().isOk())
-                ;
+                .andExpect(status().isOk());
     }
-
 }

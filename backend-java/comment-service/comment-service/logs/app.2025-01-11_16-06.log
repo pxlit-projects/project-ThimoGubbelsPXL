@@ -1,0 +1,12 @@
+[CUSTOM LOG] 2025-01-11T16:06:20.948+0100 INFO               [main]                         pxl.be.comment.controller.CommentControllerTests - Starting CommentControllerTests using Java 21.0.2 with PID 32680 (started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\comment-service)
+[CUSTOM LOG] 2025-01-11T16:06:20.957+0100 DEBUG              [main]                         pxl.be.comment.controller.CommentControllerTests - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-11T16:06:20.958+0100 INFO               [main]                         pxl.be.comment.controller.CommentControllerTests - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2025-01-11T16:06:23.308+0100 INFO               [main]                         pxl.be.comment.controller.CommentControllerTests - Started CommentControllerTests in 4.374 seconds (process running for 5.682)
+[CUSTOM LOG] 2025-01-11T16:06:23.461+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - Received delete comment request
+[CUSTOM LOG] 2025-01-11T16:06:23.620+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - User with role viewer tried to create a comment
+[CUSTOM LOG] 2025-01-11T16:06:23.621+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Unauthorized access
+[CUSTOM LOG] 2025-01-11T16:06:23.655+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - User with role viewer tried to delete a comment
+[CUSTOM LOG] 2025-01-11T16:06:23.656+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Unauthorized access
+[CUSTOM LOG] 2025-01-11T16:06:23.704+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - Received create comment request
+[CUSTOM LOG] 2025-01-11T16:06:23.768+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 1
+[CUSTOM LOG] 2025-01-11T16:06:23.780+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - Received update comment request

@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  news-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    container_name: news-app
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped

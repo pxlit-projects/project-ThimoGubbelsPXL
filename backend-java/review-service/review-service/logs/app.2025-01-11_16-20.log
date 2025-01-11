@@ -1,0 +1,8 @@
+[CUSTOM LOG] 2025-01-11T16:20:15.866+0100 INFO               [main]                         pxl.be.review.service.ReviewServiceIntegrationTests - Starting ReviewServiceIntegrationTests using Java 21.0.2 with PID 27344 (started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\review-service)
+[CUSTOM LOG] 2025-01-11T16:20:15.871+0100 DEBUG              [main]                         pxl.be.review.service.ReviewServiceIntegrationTests - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-11T16:20:15.872+0100 INFO               [main]                         pxl.be.review.service.ReviewServiceIntegrationTests - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2025-01-11T16:20:22.492+0100 INFO               [main]                         pxl.be.review.service.ReviewServiceIntegrationTests - Started ReviewServiceIntegrationTests in 8.366 seconds (process running for 20.991)
+[CUSTOM LOG] 2025-01-11T16:20:24.969+0100 INFO               [main]                         pxl.be.review.service.ReviewService - Deleting review with id: 1
+[CUSTOM LOG] 2025-01-11T16:20:25.159+0100 INFO               [main]                         pxl.be.review.service.ReviewService - Getting review with id: 2java.lang.Long
+[CUSTOM LOG] 2025-01-11T16:20:25.201+0100 INFO               [main]                         pxl.be.review.service.ReviewService - [Review(id=2, postId=1, content=Test Review, author=Author, isApproved=true)]
+[CUSTOM LOG] 2025-01-11T16:20:25.220+0100 INFO               [main]                         pxl.be.review.service.ReviewService - Review(id=2, postId=1, content=Test Review, author=Author, isApproved=true)

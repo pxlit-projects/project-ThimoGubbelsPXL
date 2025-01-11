@@ -1,0 +1,10 @@
+[CUSTOM LOG] 2025-01-11T16:13:07.892+0100 INFO               [main]                         pxl.be.comment.service.CommentServiceIntegrationTests - Starting CommentServiceIntegrationTests using Java 21.0.2 with PID 19596 (started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\comment-service)
+[CUSTOM LOG] 2025-01-11T16:13:07.899+0100 DEBUG              [main]                         pxl.be.comment.service.CommentServiceIntegrationTests - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-11T16:13:07.900+0100 INFO               [main]                         pxl.be.comment.service.CommentServiceIntegrationTests - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2025-01-11T16:13:13.812+0100 INFO               [main]                         pxl.be.comment.service.CommentServiceIntegrationTests - Started CommentServiceIntegrationTests in 7.852 seconds (process running for 21.162)
+[CUSTOM LOG] 2025-01-11T16:13:14.532+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Saving comment with content: Test Comment
+[CUSTOM LOG] 2025-01-11T16:13:14.571+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Sending commentAdded message to RabbitMQ for postId: 1
+[CUSTOM LOG] 2025-01-11T16:13:14.681+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Deleting comment with id: 2
+[CUSTOM LOG] 2025-01-11T16:13:14.691+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Sending commentDeleted message to RabbitMQ for postId: 1
+[CUSTOM LOG] 2025-01-11T16:13:14.747+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Getting comment with id: 3
+[CUSTOM LOG] 2025-01-11T16:13:14.771+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Updating comment with id: 4

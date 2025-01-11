@@ -13,11 +13,11 @@ import pxl.be.review.domain.Review;
 import pxl.be.review.exception.ResourceNotFoundException;
 import pxl.be.review.repository.ReviewRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
-
-import java.util.List;
 
 public class ReviewServiceTests {
 
@@ -87,4 +87,25 @@ public class ReviewServiceTests {
 
         assertThrows(ResourceNotFoundException.class, () -> reviewService.getReview(reviewId));
     }
+
+    @Test
+    public void testDeleteReviewShouldInvokeRepositoryDelete() {
+        Long reviewId = 1L;
+
+        reviewService.deleteReview(reviewId);
+
+        verify(mockReviewRepository).deleteById(reviewId);
+    }
+
+    @Test
+    public void testDeleteReviewShouldThrowResourceNotFoundException() {
+        Long reviewId = 1L;
+
+        doThrow(new ResourceNotFoundException("Review with Id:" + reviewId + " not found"))
+                .when(mockReviewRepository).deleteById(reviewId);
+
+        assertThrows(ResourceNotFoundException.class, () -> reviewService.deleteReview(reviewId));
+    }
+
+
 }

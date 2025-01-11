@@ -17,8 +17,7 @@ import pxl.be.review.service.IReviewService;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -92,4 +91,15 @@ public class ReviewControllerTests {
 
         verify(reviewService).getReview(reviewId);
     }
+    @Test
+    public void testDeleteReview() throws Exception {
+        Long reviewId = 1L;
+
+        mockMvc.perform(delete("/api/review/{reviewId}", reviewId)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        verify(reviewService).deleteReview(reviewId);
+    }
+
 }

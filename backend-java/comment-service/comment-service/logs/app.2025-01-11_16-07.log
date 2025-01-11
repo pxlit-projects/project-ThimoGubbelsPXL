@@ -1,0 +1,6 @@
+[CUSTOM LOG] 2025-01-11T16:07:10.541+0100 INFO               [main]                         pxl.be.comment.controller.CommentControllerTests - Starting CommentControllerTests using Java 21.0.2 with PID 4564 (started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\comment-service)
+[CUSTOM LOG] 2025-01-11T16:07:10.548+0100 DEBUG              [main]                         pxl.be.comment.controller.CommentControllerTests - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-11T16:07:10.549+0100 INFO               [main]                         pxl.be.comment.controller.CommentControllerTests - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2025-01-11T16:07:13.078+0100 INFO               [main]                         pxl.be.comment.controller.CommentControllerTests - Started CommentControllerTests in 4.576 seconds (process running for 5.788)
+[CUSTOM LOG] 2025-01-11T16:07:13.346+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - User with role viewer tried to create a comment
+[CUSTOM LOG] 2025-01-11T16:07:13.348+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Unauthorized access

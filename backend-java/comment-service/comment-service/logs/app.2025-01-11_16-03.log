@@ -1,0 +1,11 @@
+[CUSTOM LOG] 2025-01-11T16:03:51.051+0100 INFO               [main]                         pxl.be.comment.controller.CommentControllerTests - Starting CommentControllerTests using Java 21.0.2 with PID 22228 (started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\comment-service)
+[CUSTOM LOG] 2025-01-11T16:03:51.052+0100 DEBUG              [main]                         pxl.be.comment.controller.CommentControllerTests - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-11T16:03:51.053+0100 INFO               [main]                         pxl.be.comment.controller.CommentControllerTests - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2025-01-11T16:03:53.461+0100 INFO               [main]                         pxl.be.comment.controller.CommentControllerTests - Started CommentControllerTests in 4.448 seconds (process running for 5.786)
+[CUSTOM LOG] 2025-01-11T16:03:53.624+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - Received delete comment request
+[CUSTOM LOG] 2025-01-11T16:03:53.774+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - User with role viewer tried to create a comment
+[CUSTOM LOG] 2025-01-11T16:03:53.776+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Unauthorized access
+[CUSTOM LOG] 2025-01-11T16:03:53.799+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - User with role viewer tried to delete a comment
+[CUSTOM LOG] 2025-01-11T16:03:53.800+0100 INFO               [main]                         pxl.be.comment.service.CommentService - Unauthorized access
+[CUSTOM LOG] 2025-01-11T16:03:53.858+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - Received create comment request
+[CUSTOM LOG] 2025-01-11T16:03:53.911+0100 INFO               [main]                         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 1

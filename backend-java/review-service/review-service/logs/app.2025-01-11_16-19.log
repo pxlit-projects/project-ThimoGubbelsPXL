@@ -1,0 +1,19 @@
+[CUSTOM LOG] 2025-01-11T16:19:01.062+0100 INFO               [main]                         pxl.be.review.controller.ReviewControllerTests - Starting ReviewControllerTests using Java 21.0.2 with PID 28132 (started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\review-service)
+[CUSTOM LOG] 2025-01-11T16:19:01.064+0100 DEBUG              [main]                         pxl.be.review.controller.ReviewControllerTests - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-11T16:19:01.064+0100 INFO               [main]                         pxl.be.review.controller.ReviewControllerTests - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2025-01-11T16:19:03.109+0100 INFO               [main]                         pxl.be.review.controller.ReviewControllerTests - Started ReviewControllerTests in 3.145 seconds (process running for 11.001)
+[CUSTOM LOG] 2025-01-11T16:19:03.378+0100 INFO               [main]                         pxl.be.review.controller.ReviewController - Creating review
+[CUSTOM LOG] 2025-01-11T16:19:03.378+0100 INFO               [main]                         pxl.be.review.controller.ReviewController - CreateReviewRequest(postId=1, approved=true, content=Test Review, author=Author, postAuthor=Post Author)
+[CUSTOM LOG] 2025-01-11T16:19:03.378+0100 DEBUG              [main]                         pxl.be.review.controller.ReviewController - Creating post
+[CUSTOM LOG] 2025-01-11T16:19:03.458+0100 INFO               [main]                         pxl.be.review.controller.ReviewController - Deleting review with id: 1
+[CUSTOM LOG] 2025-01-11T16:19:03.479+0100 INFO               [main]                         pxl.be.review.controller.ReviewController - Getting review with id: 1java.lang.Long
+[CUSTOM LOG] 2025-01-11T16:19:04.180+0100 INFO               [main]                         pxl.be.review.service.ReviewService - Getting review with id: 1java.lang.Long
+[CUSTOM LOG] 2025-01-11T16:19:04.181+0100 INFO               [main]                         pxl.be.review.service.ReviewService - []
+[CUSTOM LOG] 2025-01-11T16:19:04.201+0100 DEBUG              [main]                         pxl.be.review.service.ReviewService - Saving review with author: Author
+[CUSTOM LOG] 2025-01-11T16:19:04.202+0100 INFO               [main]                         pxl.be.review.service.ReviewService - Saving review : CreateReviewRequest(postId=1, approved=true, content=Test Review, author=Author, postAuthor=Post Author)
+[CUSTOM LOG] 2025-01-11T16:19:04.203+0100 INFO               [main]                         pxl.be.review.service.ReviewService - []
+[CUSTOM LOG] 2025-01-11T16:19:04.266+0100 INFO               [main]                         pxl.be.review.service.ReviewService - Deleting review with id: 1
+[CUSTOM LOG] 2025-01-11T16:19:04.271+0100 INFO               [main]                         pxl.be.review.service.ReviewService - Deleting review with id: 1
+[CUSTOM LOG] 2025-01-11T16:19:04.280+0100 INFO               [main]                         pxl.be.review.service.ReviewService - Getting review with id: 1java.lang.Long
+[CUSTOM LOG] 2025-01-11T16:19:04.285+0100 INFO               [main]                         pxl.be.review.service.ReviewService - [Review(id=1, postId=1, content=Test Review, author=Author, isApproved=true)]
+[CUSTOM LOG] 2025-01-11T16:19:04.285+0100 INFO               [main]                         pxl.be.review.service.ReviewService - Review(id=1, postId=1, content=Test Review, author=Author, isApproved=true)

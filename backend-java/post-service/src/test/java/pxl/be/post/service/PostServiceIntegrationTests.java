@@ -1,40 +1,31 @@
 package pxl.be.post.service;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import pxl.be.post.api.data.CommentMessage;
 import pxl.be.post.api.data.CreatePostRequest;
-import pxl.be.post.api.data.PostResponse;
 import pxl.be.post.api.data.PublicPostResponse;
 import pxl.be.post.api.data.ReviewMessage;
 import pxl.be.post.domain.Post;
-import pxl.be.post.exception.ResourceNotFoundException;
 import pxl.be.post.repository.PostRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.*;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.when;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @Testcontainers
@@ -55,6 +46,7 @@ public class PostServiceIntegrationTests {
 
     @Autowired
     private PostRepository postRepository;
+
     @DynamicPropertySource
     static void registerMySQLProperties(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", sqlContainer::getJdbcUrl);
@@ -68,8 +60,8 @@ public class PostServiceIntegrationTests {
     }
 
     @Test
+    @Transactional
     public void testCreatePostIntegration() {
-        // Assemble
         CreatePostRequest createPostRequest = CreatePostRequest.builder()
                 .title("Test Post")
                 .content("This is a test post.")
@@ -77,16 +69,14 @@ public class PostServiceIntegrationTests {
                 .date(new Date())
                 .build();
 
-        // Act
         postService.createPost(createPostRequest);
 
-        // Assert
         assertEquals(1, postRepository.findAll().size());
     }
 
     @Test
+    @Transactional
     public void testUpdatePostIntegration() {
-        // Assemble
         Post post = Post.builder()
                 .title("Old Post")
                 .content("This is an old post.")
@@ -103,58 +93,24 @@ public class PostServiceIntegrationTests {
                 .isConcept(true)
                 .build();
 
-        // Act
         postService.updatePost(post.getId(), createPostRequest);
 
-        // Assert
         Post updatedPost = postRepository.findById(post.getId()).orElseThrow();
         assertEquals("Updated Post", updatedPost.getTitle());
         assertEquals("This is an updated post.", updatedPost.getContent());
         assertTrue(updatedPost.isConcept());
     }
 
-
-
     @Test
-    public void testFilterPostsIntegration() {
-        // Assemble
-        Post post1 = Post.builder()
-                .title("Post 1")
-                .content("Content 1")
-                .author("Author 1")
-                .date(new Date())
-                .isPublished(true)
-                .build();
-
-        Post post2 = Post.builder()
-                .title("Post 2")
-                .content("Content 2")
-                .author("Author 2")
-                .date(new Date())
-                .isPublished(false)
-                .build();
-
-        postRepository.save(post1);
-        postRepository.save(post2);
-
-        // Act
-        Pageable pageable = PageRequest.of(0, 10);
-        Page<PublicPostResponse> filteredPosts = postService.filterPosts("Content 1", "Author 1", null, null, pageable);
-
-        // Assert
-        assertEquals(1, filteredPosts.getTotalElements());
-        assertEquals("Post 1", filteredPosts.getContent().get(0).getTitle());
-    }
-
-    @Test
+    @Transactional
     public void testGetAllPublicPostsIntegration() {
-        // Assemble
         Post post1 = Post.builder()
                 .title("Post 1")
                 .content("Content 1")
                 .author("Author 1")
                 .date(new Date())
                 .isPublished(true)
+                .commentIds(new ArrayList<>())
                 .build();
 
         Post post2 = Post.builder()
@@ -163,60 +119,56 @@ public class PostServiceIntegrationTests {
                 .author("Author 2")
                 .date(new Date())
                 .isPublished(false)
+                .commentIds(new ArrayList<>())
                 .build();
 
         postRepository.save(post1);
         postRepository.save(post2);
 
-        // Act
         Pageable pageable = PageRequest.of(0, 10);
         Page<PublicPostResponse> publicPosts = postService.getAllPublicPosts(pageable);
 
-        // Assert
         assertEquals(1, publicPosts.getTotalElements());
         assertEquals("Post 1", publicPosts.getContent().get(0).getTitle());
     }
 
     @Test
+    @Transactional
     public void testPublishPostIntegration() {
-        // Assemble
         Post post = Post.builder()
                 .title("Old Post")
                 .content("This is an old post.")
                 .author("Author")
                 .date(new Date())
-                .isApproved(true) // Ensure the post is approved
+                .isApproved(true)
                 .build();
         postRepository.save(post);
 
-        // Act
         postService.publishPost(post.getId());
 
-        // Assert
         Post publishedPost = postRepository.findById(post.getId()).orElseThrow();
         assertTrue(publishedPost.isPublished());
     }
 
     @Test
+    @Transactional
     public void testPublishPostShouldThrowIllegalStateExceptionIfNotApprovedIntegration() {
-        // Assemble
         Post post = Post.builder()
                 .title("Old Post")
                 .content("This is an old post.")
                 .author("Author")
                 .date(new Date())
-                .isApproved(false) // Post is not approved
+                .isApproved(false)
                 .build();
         postRepository.save(post);
 
-        // Act & Assert
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> postService.publishPost(post.getId()));
         assertEquals("Post is not approved", exception.getMessage());
     }
 
     @Test
+    @Transactional
     public void testUpdatePostReviewIntegration() {
-        // Assemble
         Post post = Post.builder()
                 .title("Post 1")
                 .content("Content 1")
@@ -231,15 +183,58 @@ public class PostServiceIntegrationTests {
                 .isApproved(true)
                 .build();
 
-        // Act
         postService.updatePostReview(reviewMessage);
 
-        // Assert
         Post updatedPost = postRepository.findById(post.getId()).orElseThrow();
         assertEquals(1L, updatedPost.getReviewId());
         assertTrue(updatedPost.isApproved());
     }
 
+    @Test
+    @Transactional
+    public void testUpdateCommentsListShouldAddCommentIntegration() {
+        Post post = Post.builder()
+                .title("Post 1")
+                .content("Content 1")
+                .author("Author 1")
+                .date(new Date())
+                .commentIds(new ArrayList<>())
+                .build();
+        postRepository.save(post);
 
+        CommentMessage commentMessage = CommentMessage.builder()
+                .postId(post.getId())
+                .commentId(1L)
+                .isAdded(true)
+                .build();
 
+        postService.updateCommentsList(commentMessage);
+
+        Post updatedPost = postRepository.findById(post.getId()).orElseThrow();
+        assertTrue(updatedPost.getCommentIds().contains(1L));
+    }
+
+    @Test
+    @Transactional
+    public void testUpdateCommentsListShouldRemoveCommentIntegration() {
+        Post post = Post.builder()
+                .title("Post 1")
+                .content("Content 1")
+                .author("Author 1")
+                .date(new Date())
+                .commentIds(new ArrayList<>(List.of(1L)))
+                .build();
+        postRepository.save(post);
+
+        CommentMessage commentMessage = CommentMessage.builder()
+                .postId(post.getId())
+                .commentId(1L)
+                .isAdded(false)
+                .build();
+
+        postService.updateCommentsList(commentMessage);
+
+        Post updatedPost = postRepository.findById(post.getId()).orElseThrow();
+        assertFalse(updatedPost.getCommentIds().contains(1L));
+    }
 }

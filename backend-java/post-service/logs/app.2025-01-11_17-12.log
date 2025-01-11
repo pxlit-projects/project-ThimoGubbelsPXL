@@ -1,0 +1,3 @@
+[CUSTOM LOG] 2025-01-11T17:12:49.686+0100 INFO               [main]                         pxl.be.post.PostServiceApplication - Starting PostServiceApplication using Java 21.0.2 with PID 11960 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\post-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2025-01-11T17:12:49.710+0100 DEBUG              [main]                         pxl.be.post.PostServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-11T17:12:49.711+0100 INFO               [main]                         pxl.be.post.PostServiceApplication - No active profile set, falling back to 1 default profile: "default"

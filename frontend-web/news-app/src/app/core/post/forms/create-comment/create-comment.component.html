@@ -10,9 +10,11 @@
         rows="4"
         placeholder="Write your comment here...">
       </textarea>
-      <mat-error *ngIf="commentForm.get('content')?.invalid && commentForm.get('content')?.touched">
+      @if(commentForm.get('content')?.invalid && commentForm.get('content')?.touched){
+      <mat-error >
         Comment content is required
       </mat-error>
+    }
     </mat-form-field>
   </div>
   <div mat-dialog-actions class="flex justify-end gap-2">
