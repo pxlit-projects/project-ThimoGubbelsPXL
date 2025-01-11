@@ -23,7 +23,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   postForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
     content: ['', Validators.required],
-    isConcept: [false]
+    concept: [false]
   });
   postId: Number | null = null;
   subs: Subscription[] = [];

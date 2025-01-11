@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { computed, inject, Injectable, OnInit, Signal, signal, WritableSignal } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { Observable, Subscription, map, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Post } from '../models/post';

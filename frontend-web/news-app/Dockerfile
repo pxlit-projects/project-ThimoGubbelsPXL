@@ -6,4 +6,4 @@ RUN npm run build
 
 FROM nginx
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /usr/src/app/dist/customer-app/browser /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/news-app/browser /usr/share/nginx/html

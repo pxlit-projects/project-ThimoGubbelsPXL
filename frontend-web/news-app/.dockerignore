@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Testing
+coverage/
+*.spec.ts
+*.test.ts
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Build output
+dist/
+tmp/
+
+# Environment
+.env
+*.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

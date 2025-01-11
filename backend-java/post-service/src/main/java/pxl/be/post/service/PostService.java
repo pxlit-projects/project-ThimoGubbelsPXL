@@ -43,6 +43,7 @@ public class PostService implements IPostService {
     public void updatePost(Long postId, CreatePostRequest createPostRequest) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException("Post with Id:" + postId + "not found"));
         Long reviewId = post.getReviewId();
+        log.info("Updating post: " + post + " with new values: " + createPostRequest);
         post.setTitle(createPostRequest.getTitle());
         post.setContent(createPostRequest.getContent());
         post.setConcept(createPostRequest.getIsConcept());

@@ -1,3 +1,4 @@
+# docker-compose.yml
 version: '3.8'
 
 services:
@@ -10,4 +11,12 @@ services:
     container_name: news-app
     environment:
       - NODE_ENV=production
+    networks:
+      - app-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge

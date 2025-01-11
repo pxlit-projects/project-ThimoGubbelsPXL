@@ -1,3 +1,0 @@
-[CUSTOM LOG] 2025-01-11T17:13:01.354+0100 INFO               [main]                         pxl.be.review.ReviewServiceApplication - Starting ReviewServiceApplication using Java 21.0.2 with PID 14940 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\review-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
-[CUSTOM LOG] 2025-01-11T17:13:01.367+0100 DEBUG              [main]                         pxl.be.review.ReviewServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[CUSTOM LOG] 2025-01-11T17:13:01.368+0100 INFO               [main]                         pxl.be.review.ReviewServiceApplication - No active profile set, falling back to 1 default profile: "default"
