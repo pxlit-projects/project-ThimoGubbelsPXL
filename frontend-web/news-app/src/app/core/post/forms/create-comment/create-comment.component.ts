@@ -1,6 +1,6 @@
 import { Component, inject, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +12,7 @@ import { AuthService } from '../../../../shared/services/auth.service';
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    FormsModule,
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -23,29 +23,27 @@ import { AuthService } from '../../../../shared/services/auth.service';
 export class CreateCommentComponent {
   private fb: FormBuilder = inject(FormBuilder);
   private authService: AuthService = inject(AuthService);
-
-  commentForm: FormGroup = this.fb.group({
-    content: ['', Validators.required]
-  });
+  comment: string = '';
+  
 
   constructor(
     public dialogRef: MatDialogRef<CreateCommentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { postId: Number }
   ) {}
 
-  onSubmit() {
-    if (this.commentForm.valid) {
+  onSubmit() : void {
+    
       const currentUser = this.authService.getCurrentUser();
       if (!currentUser) return;
 
       const comment = {
         postId: this.data.postId,
-        content: this.commentForm.value.content,
+        content: this.comment,
         author: currentUser.username,
         date: new Date()
       };
 
       this.dialogRef.close(comment);
-    }
+    
   }
 }
