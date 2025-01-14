@@ -33,10 +33,10 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.subs.push(this.postService.getPublicPosts().subscribe({
       next: (page) => {
         this.post = page.content.find(p => p.id === postId) || null;
-        console.log(this.post);
+      
       },
       error: (err) => {
-        console.error('Error fetching post details', err);
+        this.postService.errorMessage = err;
       }
     }));
   }
@@ -51,8 +51,10 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       if (index !== -1) {
         this.post!.comments[index] = comment;
       }
-      }
-    })
+      },
+      error: (error) => {
+        this.commentService.errorMessage = error;
+    }})
   }
 }
 
@@ -61,7 +63,10 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       
       this.commentService.deleteComment(commentId ).subscribe({next: () => {
         this.post!.comments = this.post!.comments.filter(c => c.id !== commentId);
-    }})
+    },
+    error: (error) => {
+      this.commentService.errorMessage = error;
+  }})
 
   }
 }
@@ -83,7 +88,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
             }
           },
           error: (error) => {
-            console.error('Error creating comment:', error);
+            this.commentService.errorMessage = error;
           }
         });
       }

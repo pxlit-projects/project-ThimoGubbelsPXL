@@ -37,6 +37,11 @@
       </mat-card>
     </div>
   }
+  @if(this.postService.errorMessage){
+    <div  class="text-red-500 text-xs italic mt-2">
+      {{ this.postService.errorMessage }}
+    </div>
+  }
     <mat-paginator [length]="totalPosts" [pageSize]="pageSize" [pageIndex]="pageIndex" (page)="onPageChange($event)">
     </mat-paginator>
   </div>

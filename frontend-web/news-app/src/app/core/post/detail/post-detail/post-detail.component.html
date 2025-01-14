@@ -26,6 +26,11 @@
             }
           </div>
         </div>
+        @if(this.postService.errorMessage || this.commentService.errorMessage){
+          <div  class="text-red-500 text-xs italic mt-2">
+            {{ this.postService.errorMessage || this.commentService.errorMessage }}
+          </div>
+        }
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" [routerLink]="['/publicposts']">Back to Posts</button>      </mat-card-actions>

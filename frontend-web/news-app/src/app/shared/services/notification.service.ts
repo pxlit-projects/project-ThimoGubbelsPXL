@@ -1,6 +1,6 @@
 // src/app/shared/services/notification.service.ts
 import { Injectable, NgZone } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -9,6 +9,8 @@ import { environment } from '../../../environments/environment';
 export class NotificationService {
   private eventSource: EventSource | undefined;
   private notificationSubject = new Subject<string>();
+
+
   private maxRetries = 5;
   private retryCount = 0;
   private retryInterval = 5000;
@@ -44,6 +46,13 @@ export class NotificationService {
       this.eventSource.onopen = () => {
         this.retryCount = 0;
         console.log('SSE connection established');
+      };
+
+      this.eventSource.onerror = (error) => {
+        this.ngZone.run(() => {
+          
+          this.handleError();
+        });
       };
     });
  

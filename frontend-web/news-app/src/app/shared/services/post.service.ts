@@ -25,19 +25,19 @@ export class PostService {
   
   publishPost(postId: Number): Observable<void> {
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
-    return this.http.patch<void>(`${this.api}post/api/post/${postId}/publish`, {}, { headers }).pipe(catchError(this.handleError));
+    return this.http.patch<void>(`${this.api}post/api/post/${postId}/publish`, {}, { headers }).pipe(catchError((error)=>this.handleError(error)));
   }
   createPost(post: Post) {
     console.log("posting");
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
-    return this.http.post<Post>(this.api + 'post/api/post', post,{ headers }).pipe(catchError(this.handleError));
+    return this.http.post<Post>(this.api + 'post/api/post', post,{ headers }).pipe(catchError((error)=>this.handleError(error)));
 
   }
   
   updatePost(post: Post, postId: Number): Observable<Post>{
     console.log(post);
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
-    return this.http.put<Post>(this.api + `post/api/post/${postId}`, post, { headers }).pipe(catchError(this.handleError));
+    return this.http.put<Post>(this.api + `post/api/post/${postId}`, post, { headers }).pipe(catchError((error)=>this.handleError(error)));
 
  
     
@@ -45,7 +45,7 @@ export class PostService {
 
   getPosts(){
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
-    return  this.http.get<Post[]>(this.api + 'post/api/post', { headers }).pipe(catchError(this.handleError));
+    return  this.http.get<Post[]>(this.api + 'post/api/post', { headers }).pipe(catchError((error)=>this.handleError(error)));
 
   }
   getPublicPosts(page: number = 0, size: number = 10): Observable<Page<Post>> {
@@ -84,7 +84,7 @@ export class PostService {
           content: filteredContent,
           totalElements: filteredContent.length
         };
-      }), catchError(this.handleError)
+      }), catchError((error)=>this.handleError(error))
     );
   }
 
@@ -108,12 +108,20 @@ export class PostService {
   private handleError(error: HttpErrorResponse) {
     
     if (error.error instanceof ErrorEvent) {
-      this.errorMessage = `Error: ${error.error.message}`;
+      this.errorMessage = `Client side error`;
     } else {
-      this.errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      this.errorMessage = `Backend error`;
     }
-    console.error(this.errorMessage);
-    return throwError(this.errorMessage);
+   
+    
+
+    if (error.status === 0) {
+      // Handle CORS or network issues
+      return throwError(() => new Error('The backend is offline or unreachable.'));
+    }
+
+    // Return a more user-friendly error message
+    return throwError(() => new Error('Something went wrong; please try again later.'));
   }
   
 }

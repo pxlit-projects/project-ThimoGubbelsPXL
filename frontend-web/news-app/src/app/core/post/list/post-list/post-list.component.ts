@@ -53,7 +53,7 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.totalPosts = page.totalElements;
       },
       error: (err) => {
-        console.error('Error fetching posts', err);
+        this.postService.errorMessage = err;
       }
     }));
    

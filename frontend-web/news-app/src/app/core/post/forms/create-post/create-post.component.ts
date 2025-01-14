@@ -57,8 +57,8 @@ export class CreatePostComponent implements OnInit, OnDestroy {
               this.router.navigate(['/posts']);
               this.postService.errorMessage=null;
             },
-            error: (err: Error) => {
-              this.postService.errorMessage= "Error occured";
+            error: (err) => {
+              this.postService.errorMessage= err;
             }
           }));
         } else {
@@ -68,8 +68,8 @@ export class CreatePostComponent implements OnInit, OnDestroy {
               this.postCreated.emit();
               this.postService.errorMessage= null;
             },
-            error: (err: Error) => {
-              this.postService.errorMessage= "Error occured";
+            error: (err) => {
+              this.postService.errorMessage= err;
             }
           }));
         }

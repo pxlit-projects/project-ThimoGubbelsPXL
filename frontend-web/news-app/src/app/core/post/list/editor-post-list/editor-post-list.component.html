@@ -43,6 +43,11 @@
       </mat-card-actions>
     </mat-card>
     }
+    @if(this.postService.errorMessage){
+      <div  class="text-red-500 text-xs italic mt-2">
+        {{ this.postService.errorMessage }}
+      </div>
+    }
   </div>
 
   <button (click)="openCreateModal()" class="fixed bottom-4 right-4 bg-blue-500 text-white p-4 rounded-full shadow-lg">

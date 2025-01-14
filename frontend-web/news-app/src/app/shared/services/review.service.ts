@@ -1,7 +1,7 @@
 // src/app/shared/services/review.service.ts
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthService } from './auth.service';
 
@@ -10,18 +10,35 @@ import { AuthService } from './auth.service';
 })
 export class ReviewService {
   private api = environment.apiUrl;
-
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) {}
+  errorMessage :string|null =null;
+    private http: HttpClient = inject(HttpClient);
+    private authService: AuthService = inject(AuthService);
+ 
 
   createReview(review: any): Observable<void> {
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
-    return this.http.post<void>(`${this.api}review/api/review`, review, { headers });
+    return this.http.post<void>(`${this.api}review/api/review`, review, { headers }).pipe(catchError((error)=>this.handleError(error)));;
   }
 
   getReview(reviewId: number): Observable<any> {
-    return this.http.get(`${this.api}review/api/review/${reviewId}`);
+    return this.http.get(`${this.api}review/api/review/${reviewId}`).pipe(catchError((error)=>this.handleError(error)));;
   }
+  private handleError(error: HttpErrorResponse) {
+      
+      if (error.error instanceof ErrorEvent) {
+        this.errorMessage = `Client side error`;
+      } else {
+        this.errorMessage = `Backend error`;
+      }
+     
+      
+  
+      if (error.status === 0) {
+        // Handle CORS or network issues
+        return throwError(() => new Error('The backend is offline or unreachable.'));
+      }
+  
+      // Return a more user-friendly error message
+      return throwError(() => new Error('Something went wrong; please try again later.'));
+    }
 }

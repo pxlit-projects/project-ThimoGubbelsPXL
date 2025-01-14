@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class EditorPostDetailComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
-  private postService = inject(PostService);
+  postService = inject(PostService);
   private snackBar = inject(MatSnackBar);
   private subs: Subscription[] = [];
   
@@ -35,7 +35,7 @@ export class EditorPostDetailComponent implements OnInit, OnDestroy {
         this.post = posts.find(p => p.id === id) || null;
       },
       error: (err) => {
-        console.error('Error fetching post details', err);
+        this.postService.errorMessage = err;
       }
     }));
   }
@@ -51,6 +51,7 @@ export class EditorPostDetailComponent implements OnInit, OnDestroy {
         this.snackBar.open('Post published successfully', 'Close', { duration: 3000 });
       },
       error: (error) => {
+        this.postService.errorMessage = error;
         this.snackBar.open('Error publishing post', 'Close', { duration: 3000 });
       }
     }));

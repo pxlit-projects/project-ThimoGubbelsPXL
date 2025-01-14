@@ -72,7 +72,9 @@ export class EditorPostListComponent implements OnInit, OnDestroy {
         this.postService.posts = posts;
         console.log(posts);
       },
-     
+      error: (err) => {
+        this.postService.errorMessage = err;
+      }
     });
   }
 

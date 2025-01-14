@@ -47,6 +47,11 @@
           Back to Posts
         </button>
       </mat-card-actions>
+      @if(this.postService.errorMessage ){
+        <div  class="text-red-500 text-xs italic mt-2">
+          {{ this.postService.errorMessage  }}
+        </div>
+      }
         <!-- Show review details only if not approved and review exists -->
         @if(!post.approved && post.review){
           <div class="mt-4 p-4 bg-gray-100 rounded">
