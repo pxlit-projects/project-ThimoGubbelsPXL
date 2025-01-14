@@ -46,7 +46,7 @@ public class PostService implements IPostService {
         log.info("Updating post: " + post + " with new values: " + createPostRequest);
         post.setTitle(createPostRequest.getTitle());
         post.setContent(createPostRequest.getContent());
-        post.setConcept(createPostRequest.getIsConcept());
+        post.setConcept(createPostRequest.getConcept());
 
 
         log.debug("Updating and saving post with id: " + postId);

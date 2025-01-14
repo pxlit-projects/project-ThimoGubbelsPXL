@@ -17,7 +17,7 @@
             </button>
           </div>
           <div class="space-y-4">
-            @for(comment of post.comments; track comment.id) {
+            @for(comment of this.post.comments; track comment.id) {
               <app-post-comment
                 [comment]="comment"
                 (commentUpdated)="onCommentUpdated($event)"

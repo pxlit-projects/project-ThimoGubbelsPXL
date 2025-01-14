@@ -28,7 +28,7 @@ public class Comment {
     private String content;
     @Getter
     @Setter
-    private Date date;
+    private Date date = new Date();
 
     public void setContent(String content) {
         this.content = content;

@@ -16,11 +16,13 @@ export class ReviewService {
  
 
   createReview(review: any): Observable<void> {
+    this.errorMessage = null;
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
     return this.http.post<void>(`${this.api}review/api/review`, review, { headers }).pipe(catchError((error)=>this.handleError(error)));;
   }
 
   getReview(reviewId: number): Observable<any> {
+    this.errorMessage = null;
     return this.http.get(`${this.api}review/api/review/${reviewId}`).pipe(catchError((error)=>this.handleError(error)));;
   }
   private handleError(error: HttpErrorResponse) {

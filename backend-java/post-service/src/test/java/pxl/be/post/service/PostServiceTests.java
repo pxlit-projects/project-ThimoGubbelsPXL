@@ -66,7 +66,7 @@ public class PostServiceTests {
                 .content("This is an updated post.")
                 .author("Author")
                 .date(new Date())
-                .isConcept(true)
+                .concept(true)
                 .build();
 
         Post existingPost = Post.builder()
@@ -97,7 +97,7 @@ public class PostServiceTests {
                 .content("This is an updated post.")
                 .author("Author")
                 .date(new Date())
-                .isConcept(true)
+                .concept(true)
                 .build();
 
         when(mockPostRepository.findById(postId)).thenReturn(Optional.empty());

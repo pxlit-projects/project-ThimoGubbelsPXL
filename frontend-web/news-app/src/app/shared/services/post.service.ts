@@ -24,18 +24,20 @@ export class PostService {
  
   
   publishPost(postId: Number): Observable<void> {
+    this.errorMessage = null;
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
     return this.http.patch<void>(`${this.api}post/api/post/${postId}/publish`, {}, { headers }).pipe(catchError((error)=>this.handleError(error)));
   }
   createPost(post: Post) {
-    console.log("posting");
+    this.errorMessage = null;
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
     return this.http.post<Post>(this.api + 'post/api/post', post,{ headers }).pipe(catchError((error)=>this.handleError(error)));
 
   }
   
   updatePost(post: Post, postId: Number): Observable<Post>{
-    console.log(post);
+    this.errorMessage = null;
+   
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
     return this.http.put<Post>(this.api + `post/api/post/${postId}`, post, { headers }).pipe(catchError((error)=>this.handleError(error)));
 
@@ -44,11 +46,13 @@ export class PostService {
   }
 
   getPosts(){
+    this.errorMessage = null;
     const headers = new HttpHeaders().set('Role', this.authService.getCurrentUser()?.role!);
     return  this.http.get<Post[]>(this.api + 'post/api/post', { headers }).pipe(catchError((error)=>this.handleError(error)));
 
   }
   getPublicPosts(page: number = 0, size: number = 10): Observable<Page<Post>> {
+    this.errorMessage = null;
     return this.http.get<Page<Post>>(`${this.api}post/api/post/public`, {
       params: {
         page: page.toString(),

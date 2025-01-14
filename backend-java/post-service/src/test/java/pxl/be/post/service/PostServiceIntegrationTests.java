@@ -90,7 +90,7 @@ public class PostServiceIntegrationTests {
                 .content("This is an updated post.")
                 .author("Author")
                 .date(new Date())
-                .isConcept(true)
+                .concept(true)
                 .build();
 
         postService.updatePost(post.getId(), createPostRequest);

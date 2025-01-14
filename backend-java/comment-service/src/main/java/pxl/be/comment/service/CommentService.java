@@ -11,6 +11,8 @@ import pxl.be.comment.exception.ResourceNotFoundException;
 import pxl.be.comment.exception.UnAuthorizedException;
 import pxl.be.comment.repository.CommentRepository;
 
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class CommentService implements ICommentService {
@@ -24,12 +26,15 @@ public class CommentService implements ICommentService {
                 .content(createCommentRequest.getContent())
                 .author(createCommentRequest.getAuthor())
                 .postId(createCommentRequest.getPostId())
-                .build();
+                .date(new Date()).build();
+
         log.info("Saving comment with content: " + comment.getContent());
         commentRepository.save(comment);
         log.info("Sending commentAdded message to RabbitMQ for postId: " + createCommentRequest.getPostId());
         rabbitTemplate.convertAndSend("comment", CommentMessage.builder().postId(createCommentRequest.getPostId()).commentId(comment.getId()).isAdded(true).build());
         return CommentResponse.builder()
+                .id(comment.getId())
+                .postId(comment.getPostId())
                 .content(comment.getContent())
                 .author(comment.getAuthor())
                 .date(comment.getDate()).build();
@@ -52,6 +57,8 @@ public class CommentService implements ICommentService {
         comment.setContent(updateCommentRequest.getContent());
         commentRepository.save(comment);
         return CommentResponse.builder()
+                .id(comment.getId())
+                .postId(comment.getPostId())
                 .content(comment.getContent())
                 .author(comment.getAuthor())
                 .date(comment.getDate()).build();

@@ -52,7 +52,7 @@ public class PostControllerTests {
                 .content("This is a test post.")
                 .author("Author")
                 .date(new Date())
-                .isConcept(false)
+                .concept(false)
                 .build();
 
         String postString = objectMapper.writeValueAsString(createPostRequest);
@@ -73,7 +73,7 @@ public class PostControllerTests {
                 .content("This is an updated post.")
                 .author("Author")
                 .date(new Date())
-                .isConcept(true)
+                .concept(true)
                 .build();
 
         String postString = objectMapper.writeValueAsString(createPostRequest);
@@ -93,7 +93,7 @@ public class PostControllerTests {
                 .content("This is a test post.")
                 .author("Author")
                 .date(new Date())
-                .isConcept(false)
+                .concept(false)
                 .build();
 
         String postString = objectMapper.writeValueAsString(createPostRequest);
@@ -114,7 +114,7 @@ public class PostControllerTests {
                 .content("This is an updated post.")
                 .author("Author")
                 .date(new Date())
-                .isConcept(true)
+                .concept(true)
                 .build();
 
         String postString = objectMapper.writeValueAsString(createPostRequest);

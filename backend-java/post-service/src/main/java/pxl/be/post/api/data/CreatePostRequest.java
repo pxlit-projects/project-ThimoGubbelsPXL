@@ -29,5 +29,5 @@ public class CreatePostRequest {
     private Date date;
 
     @NotNull(message = "isConcept is mandatory")
-    private Boolean isConcept;
+    private Boolean concept;
 }

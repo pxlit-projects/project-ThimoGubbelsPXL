@@ -1,9 +1,69 @@
-[CUSTOM LOG] 2025-01-11T19:07:43.068+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - Starting CommentServiceApplication using Java 21.0.2 with PID 21004 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\comment-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
-[CUSTOM LOG] 2025-01-11T19:07:43.083+0100 DEBUG              [main]                         pxl.be.comment.CommentServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[CUSTOM LOG] 2025-01-11T19:07:43.085+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - No active profile set, falling back to 1 default profile: "default"
-[CUSTOM LOG] 2025-01-11T19:10:22.078+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - Starting CommentServiceApplication using Java 21.0.2 with PID 20332 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\comment-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
-[CUSTOM LOG] 2025-01-11T19:10:22.080+0100 DEBUG              [main]                         pxl.be.comment.CommentServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[CUSTOM LOG] 2025-01-11T19:10:22.081+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - No active profile set, falling back to 1 default profile: "default"
-[CUSTOM LOG] 2025-01-11T19:10:31.793+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - Started CommentServiceApplication in 12.368 seconds (process running for 13.707)
-[CUSTOM LOG] 2025-01-11T19:12:05.010+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.controller.CommentController - User with role editor tried to create a comment
-[CUSTOM LOG] 2025-01-11T19:12:05.012+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.service.CommentService - Unauthorized access
+[CUSTOM LOG] 2025-01-14T14:33:02.223+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - Starting CommentServiceApplication using Java 21.0.2 with PID 22484 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\comment-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2025-01-14T14:33:02.235+0100 DEBUG              [main]                         pxl.be.comment.CommentServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-14T14:33:02.235+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2025-01-14T14:35:18.231+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - Starting CommentServiceApplication using Java 21.0.2 with PID 18772 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\comment-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2025-01-14T14:35:18.238+0100 DEBUG              [main]                         pxl.be.comment.CommentServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-14T14:35:18.239+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2025-01-14T14:35:27.330+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - Started CommentServiceApplication in 11.813 seconds (process running for 13.06)
+[CUSTOM LOG] 2025-01-14T14:42:14.547+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.controller.CommentController - Received create comment request
+[CUSTOM LOG] 2025-01-14T14:42:14.547+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.service.CommentService - Saving comment with content: Nice post man!
+[CUSTOM LOG] 2025-01-14T14:42:14.651+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.service.CommentService - Sending commentAdded message to RabbitMQ for postId: 3
+[CUSTOM LOG] 2025-01-14T14:42:24.336+0100 INFO               [http-nio-8082-exec-2]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:42:24.336+0100 INFO               [http-nio-8082-exec-2]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:44:15.095+0100 INFO               [http-nio-8082-exec-5]         pxl.be.comment.controller.CommentController - User with role editor tried to create a comment
+[CUSTOM LOG] 2025-01-14T14:44:15.097+0100 INFO               [http-nio-8082-exec-5]         pxl.be.comment.service.CommentService - Unauthorized access
+[CUSTOM LOG] 2025-01-14T14:44:41.408+0100 INFO               [http-nio-8082-exec-6]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:44:41.409+0100 INFO               [http-nio-8082-exec-6]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:44:43.001+0100 INFO               [http-nio-8082-exec-7]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:44:43.001+0100 INFO               [http-nio-8082-exec-7]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:01.135+0100 INFO               [http-nio-8082-exec-8]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:01.136+0100 INFO               [http-nio-8082-exec-8]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:02.403+0100 INFO               [http-nio-8082-exec-9]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:02.403+0100 INFO               [http-nio-8082-exec-9]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:07.224+0100 INFO               [http-nio-8082-exec-10]        pxl.be.comment.controller.CommentController - User with role editor tried to create a comment
+[CUSTOM LOG] 2025-01-14T14:45:07.225+0100 INFO               [http-nio-8082-exec-10]        pxl.be.comment.service.CommentService - Unauthorized access
+[CUSTOM LOG] 2025-01-14T14:45:10.066+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:10.066+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:11.447+0100 INFO               [http-nio-8082-exec-2]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:11.447+0100 INFO               [http-nio-8082-exec-2]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:46.522+0100 INFO               [http-nio-8082-exec-3]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:46.522+0100 INFO               [http-nio-8082-exec-3]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:49.069+0100 INFO               [http-nio-8082-exec-4]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:45:49.069+0100 INFO               [http-nio-8082-exec-4]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:46:59.225+0100 INFO               [http-nio-8082-exec-7]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:46:59.225+0100 INFO               [http-nio-8082-exec-7]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:47:00.108+0100 INFO               [http-nio-8082-exec-8]         pxl.be.comment.controller.CommentController - Receiving comment request for comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:47:00.109+0100 INFO               [http-nio-8082-exec-8]         pxl.be.comment.service.CommentService - Getting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:47:04.804+0100 INFO               [http-nio-8082-exec-9]         pxl.be.comment.controller.CommentController - Received create comment request
+[CUSTOM LOG] 2025-01-14T14:47:04.804+0100 INFO               [http-nio-8082-exec-9]         pxl.be.comment.service.CommentService - Saving comment with content: Test
+[CUSTOM LOG] 2025-01-14T14:47:04.822+0100 INFO               [http-nio-8082-exec-9]         pxl.be.comment.service.CommentService - Sending commentAdded message to RabbitMQ for postId: 3
+[CUSTOM LOG] 2025-01-14T14:47:47.342+0100 INFO               [http-nio-8082-exec-2]         pxl.be.comment.controller.CommentController - Received delete comment request
+[CUSTOM LOG] 2025-01-14T14:47:47.343+0100 INFO               [http-nio-8082-exec-2]         pxl.be.comment.service.CommentService - Deleting comment with id: 2
+[CUSTOM LOG] 2025-01-14T14:47:47.381+0100 INFO               [http-nio-8082-exec-2]         pxl.be.comment.service.CommentService - Sending commentDeleted message to RabbitMQ for postId: 3
+[CUSTOM LOG] 2025-01-14T14:50:09.647+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - Starting CommentServiceApplication using Java 21.0.2 with PID 25120 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\comment-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2025-01-14T14:50:09.648+0100 DEBUG              [main]                         pxl.be.comment.CommentServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-14T14:50:09.649+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2025-01-14T14:50:17.209+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - Started CommentServiceApplication in 9.516 seconds (process running for 10.21)
+[CUSTOM LOG] 2025-01-14T14:50:36.235+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.controller.CommentController - Received create comment request
+[CUSTOM LOG] 2025-01-14T14:50:36.235+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.service.CommentService - Saving comment with content: Test2
+[CUSTOM LOG] 2025-01-14T14:50:36.356+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.service.CommentService - Sending commentAdded message to RabbitMQ for postId: 3
+[CUSTOM LOG] 2025-01-14T14:50:40.209+0100 INFO               [http-nio-8082-exec-2]         pxl.be.comment.controller.CommentController - Received delete comment request
+[CUSTOM LOG] 2025-01-14T14:50:40.209+0100 INFO               [http-nio-8082-exec-2]         pxl.be.comment.service.CommentService - Deleting comment with id: 4
+[CUSTOM LOG] 2025-01-14T14:50:40.272+0100 INFO               [http-nio-8082-exec-2]         pxl.be.comment.service.CommentService - Sending commentDeleted message to RabbitMQ for postId: 3
+[CUSTOM LOG] 2025-01-14T14:50:47.253+0100 INFO               [http-nio-8082-exec-4]         pxl.be.comment.controller.CommentController - Received create comment request
+[CUSTOM LOG] 2025-01-14T14:50:47.253+0100 INFO               [http-nio-8082-exec-4]         pxl.be.comment.service.CommentService - Saving comment with content: Haha
+[CUSTOM LOG] 2025-01-14T14:50:47.268+0100 INFO               [http-nio-8082-exec-4]         pxl.be.comment.service.CommentService - Sending commentAdded message to RabbitMQ for postId: 3
+[CUSTOM LOG] 2025-01-14T14:50:51.293+0100 INFO               [http-nio-8082-exec-5]         pxl.be.comment.controller.CommentController - Received update comment request
+[CUSTOM LOG] 2025-01-14T14:50:51.293+0100 INFO               [http-nio-8082-exec-5]         pxl.be.comment.service.CommentService - Updating comment with id: 5
+[CUSTOM LOG] 2025-01-14T14:51:01.054+0100 INFO               [http-nio-8082-exec-6]         pxl.be.comment.controller.CommentController - Received create comment request
+[CUSTOM LOG] 2025-01-14T14:51:01.055+0100 INFO               [http-nio-8082-exec-6]         pxl.be.comment.service.CommentService - Saving comment with content: Nice!
+[CUSTOM LOG] 2025-01-14T14:51:01.069+0100 INFO               [http-nio-8082-exec-6]         pxl.be.comment.service.CommentService - Sending commentAdded message to RabbitMQ for postId: 3
+[CUSTOM LOG] 2025-01-14T14:51:30.591+0100 INFO               [http-nio-8082-exec-7]         pxl.be.comment.controller.CommentController - Received update comment request
+[CUSTOM LOG] 2025-01-14T14:51:30.592+0100 INFO               [http-nio-8082-exec-7]         pxl.be.comment.service.CommentService - Updating comment with id: 6
+[CUSTOM LOG] 2025-01-14T14:52:25.024+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - Starting CommentServiceApplication using Java 21.0.2 with PID 13668 (C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java\comment-service\target\classes started by 12200538 in C:\Users\12200538\Documents\project-ThimoGubbelsPXL\backend-java)
+[CUSTOM LOG] 2025-01-14T14:52:25.025+0100 DEBUG              [main]                         pxl.be.comment.CommentServiceApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[CUSTOM LOG] 2025-01-14T14:52:25.025+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - No active profile set, falling back to 1 default profile: "default"
+[CUSTOM LOG] 2025-01-14T14:52:32.431+0100 INFO               [main]                         pxl.be.comment.CommentServiceApplication - Started CommentServiceApplication in 9.315 seconds (process running for 9.939)
+[CUSTOM LOG] 2025-01-14T14:53:04.480+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.controller.CommentController - Received create comment request
+[CUSTOM LOG] 2025-01-14T14:53:04.480+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.service.CommentService - Saving comment with content: !!
+[CUSTOM LOG] 2025-01-14T14:53:04.563+0100 INFO               [http-nio-8082-exec-1]         pxl.be.comment.service.CommentService - Sending commentAdded message to RabbitMQ for postId: 3
