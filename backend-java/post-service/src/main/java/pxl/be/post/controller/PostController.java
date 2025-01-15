@@ -109,11 +109,11 @@ public class PostController {
                     subscribers.add(emitter);
                     emitter.onDispose(() -> {
                         subscribers.remove(emitter);
-                        System.out.println("Client disconnected");
+                        log.info("Client disconnected");
                     });
                 })
                 .doOnCancel(() -> {
-                    System.out.println("Stream cancelled");
+                    log.info("Stream cancelled");
                 });
     }
     @RabbitListener(queues = "reviewAdded")
