@@ -9,8 +9,7 @@ export class AuthService {
   private currentUser: { username: string, password: string, role: string } | null = null;
 
   constructor(private router: Router) {
-    // Automatically log in a user for now
-    this.authenticate('user1', 'password1',);
+   
   }
 
   // Simulate a user database
