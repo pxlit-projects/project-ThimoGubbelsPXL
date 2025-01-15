@@ -33,7 +33,10 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.subs.push(this.postService.getPublicPosts().subscribe({
       next: (page) => {
         this.post = page.content.find(p => p.id === postId) || null;
-        this.post!.comments=[];
+        if(!this.post!.comments){
+          this.post!.comments=[];
+        }
+       
       },
       error: (err) => {
         this.postService.errorMessage = err;
@@ -83,7 +86,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       if (result) {
         this.commentService.createComment(result).subscribe({
           next: (newComment) => {
-            console.log(newComment);
+         
             if (this.post && this.post.comments) {
               this.post.comments.push(newComment);
             }
