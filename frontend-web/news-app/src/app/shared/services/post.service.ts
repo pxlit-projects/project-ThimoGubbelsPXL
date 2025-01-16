@@ -102,10 +102,19 @@ export class PostService {
     const matchesContent = !content || post.content.toLowerCase().includes(content.toLowerCase());
     const matchesAuthor = !author || post.author.toLowerCase().includes(author.toLowerCase());
     
+    // Convert all dates to start of day for proper comparison
     const postDate = new Date(post.date);
-    const matchesDateRange = (!startDate || postDate >= startDate) && 
-                           (!endDate || postDate <= endDate);
-
+    postDate.setHours(0, 0, 0, 0);
+  
+    let start = startDate ? new Date(startDate) : null;
+    if (start) start.setHours(0, 0, 0, 0);
+    
+    let end = endDate ? new Date(endDate) : null;
+    if (end) end.setHours(23, 59, 59, 999);
+  
+    const matchesDateRange = (!start || postDate >= start) && 
+                           (!end || postDate <= end);
+  
     return matchesContent && matchesAuthor && matchesDateRange;
   }
 
